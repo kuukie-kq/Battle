@@ -1,0 +1,8 @@
+.QWidget {
+
+}
+
+.QStatusBar {
+    background-color: #333333;
+    color: #CC3333;
+}

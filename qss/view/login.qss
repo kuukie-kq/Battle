@@ -1,0 +1,24 @@
+.QWidget {
+    background-image: url("../img/57394B3C65F.jpg");
+}
+
+.QStatusBar {
+    background-color: #333333;
+    color: #CC3333;
+}
+
+.QLabel {
+    color: #7FFFD4;
+}
+
+.QPushButton {
+    padding: 10px 0;
+    background: #7FFF00;
+    border-radius: 10%;
+}
+
+.QLineEdit {
+    padding: 10px 40px;
+    background: #00FFFF;
+    border-radius: 20%;
+}
