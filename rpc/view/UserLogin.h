@@ -15,7 +15,7 @@
 #include <cstring>
 #include <vector>
 #define MAX 1024
-#define PORT 20211
+#define PORT 9527
 
 class UserLogin {
 private:
