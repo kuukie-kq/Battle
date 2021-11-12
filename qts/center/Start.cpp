@@ -42,6 +42,11 @@ void Start::setQSS() {
 void Start::setSignal() {
     connect(login,SIGNAL(loginFailed(QString)),this,SLOT(statusMessage(QString)));
     connect(login,SIGNAL(loginSuccess(QString)),this,SLOT(loginSuccess(QString)));
+    connect(hall,SIGNAL(entrance(QString)),this,SLOT(hallSuccess(QString)));
+    connect(ready,SIGNAL(start(QString)),this,SLOT(readySuccess(QString)));
+    connect(package,SIGNAL(success(QString)),this,SLOT(packageSuccess(QString)));
+    connect(edit,SIGNAL(finish(QString)),this,SLOT(editSuccess(QString)));
+
 }
 
 void Start::loadQSS(const QString& relative) {
@@ -68,7 +73,6 @@ void Start::loginSuccess(const QString& username) {
     setCentralWidget(hallWidget);
 
     setWindowTitle("坦克大战-游戏界面");
-    connect(hall,SIGNAL(entrance(QString)),this,SLOT(hallSuccess(QString)));
     this->window()->show();
     statusBar->showMessage("登录成功",10000);
 }
@@ -83,7 +87,6 @@ void Start::hallSuccess(const QString& message) {
     loadQSS("../qss/view/hall.qss");
     setCentralWidget(readyWidget);
 
-    connect(ready,SIGNAL(start(QString)),this,SLOT(readySuccess(QString)));
     this->window()->show();
     statusBar->showMessage(message,10000);
 }
@@ -98,7 +101,6 @@ void Start::readySuccess(const QString& message) {
     loadQSS("../qss/view/hall.qss");
     setCentralWidget(packageWidget);
 
-    connect(package,SIGNAL(success(QString)),this,SLOT(packageSuccess(QString)));
     this->window()->show();
     statusBar->showMessage(message,10000);
 }
@@ -113,7 +115,6 @@ void Start::packageSuccess(const QString& message) {
     loadQSS("../qss/view/hall.qss");
     setCentralWidget(editWidget);
 
-    connect(edit,SIGNAL(finish(QString)),this,SLOT(editSuccess(QString)));
     this->window()->show();
     statusBar->showMessage(message,10000);
 }
@@ -128,7 +129,6 @@ void Start::editSuccess(const QString& message) {
     loadQSS("../qss/view/hall.qss");
     setCentralWidget(hallWidget);
 
-    connect(hall,SIGNAL(entrance(QString)),this,SLOT(hallSuccess(QString)));
     this->window()->show();
     statusBar->showMessage(message,10000);
 }
