@@ -30,8 +30,9 @@ private:
     QPushButton* pushButtonOne;
     QPushButton* pushButtonTwo;
     QListView* onLines;
-    QTextEdit* lowQQ;
+    QTextEdit* chat;
     QLineEdit* inputEdit;
+    QPushButton* select;
     QPushButton* push;
     QFrame* roomOne;
     QFrame* roomTwo;

@@ -28,8 +28,7 @@ void Login::setShow(QWidget* widget) {
 
 void Login::setUI() {
     layoutWidget = new QWidget();
-    layoutWidget->setGeometry(360,140,400,200);
-    layoutWidget->setObjectName("div");
+    layoutWidget->setGeometry(400,300,400,200);
 
     gridLayout = new QGridLayout();
     gridLayout->setContentsMargins(10,10,20,0);
@@ -37,6 +36,7 @@ void Login::setUI() {
     horizontalLayout->setContentsMargins(25,0,0,0);
     pushButtonOne = new QPushButton();
     pushButtonOne->setText("登录");
+    pushButtonOne->setShortcut(QKeySequence::InsertParagraphSeparator);
     pushButtonTwo = new QPushButton();
     pushButtonTwo->setText("注册");
     horizontalLayout->addWidget(pushButtonOne);

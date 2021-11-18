@@ -21,8 +21,9 @@ Hall::~Hall() {
     delete roomTwo;
     delete roomOne;
     delete push;
+    delete select;
     delete inputEdit;
-    delete lowQQ;
+    delete chat;
     delete onLines;
     delete pushButtonOne;
     delete pushButtonTwo;
@@ -34,8 +35,9 @@ Hall::~Hall() {
 void Hall::setShow(QWidget* widget) {
     horizontalLayoutWidget->setParent(widget);
     onLines->setParent(widget);
-    lowQQ->setParent(widget);
+    chat->setParent(widget);
     inputEdit->setParent(widget);
+    select->setParent(widget);
     push->setParent(widget);
     roomOne->setParent(widget);
     roomTwo->setParent(widget);
@@ -64,17 +66,22 @@ void Hall::setUI() {
     horizontalLayoutWidget->setLayout(list);
 
     onLines = new QListView();
-    onLines->setGeometry(840,20,250,150);
+    onLines->setGeometry(850,50,400,400);
 
-    lowQQ = new QTextEdit();
-    lowQQ->setGeometry(840,220,250,150);
+    chat = new QTextEdit();
+    chat->setGeometry(850, 500, 400, 180);
+    chat->setEnabled(false);
 
     inputEdit = new QLineEdit();
-    inputEdit->setGeometry(840,370,200,50);
+    inputEdit->setGeometry(895,700,300,30);
+
+    select = new QPushButton();
+    select->setGeometry(850,700,40,30);
+    select->setText("选择");
 
     push = new QPushButton();
-    push->setGeometry(950,370,50,50);
-    push->setText("PUSH");
+    push->setGeometry(1200,700,50,30);
+    push->setText("Enter");
 
     roomOne = new QFrame();
     roomOne->setGeometry(40,120,120,100);

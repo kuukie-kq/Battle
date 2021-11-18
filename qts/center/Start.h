@@ -17,6 +17,23 @@
 #include "../view/Package.h"
 #include "../view/Edit.h"
 
+#define QSSSET(path) { \
+    QFile file((path)); \
+    if(file.open(QFile::ReadOnly)) { \
+        QTextStream fileText(&file); \
+        this->setStyleSheet(fileText.readAll()); \
+        file.close(); \
+    } \
+}
+
+#define UISET(broker,view,viewClass,path) { \
+    (broker) = new QWidget(); \
+    view = new viewClass(); \
+    (view)->setShow((broker)); \
+    QSSSET((path)) \
+    setCentralWidget((broker)); \
+}
+
 class Start : public QMainWindow {
     Q_OBJECT
 public:
@@ -29,7 +46,6 @@ private:
     void setUI();
     void setQSS();
     void setSignal();
-    void loadQSS(const QString& relative);
     QWidget* loginWidget;
     Login* login;
     QWidget* hallWidget;
