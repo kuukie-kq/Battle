@@ -88,7 +88,7 @@ void Login::loginBarEvent() {
         auto userLogin = new UserLogin();
         int status = userLogin->login(username,password);
 
-        if(status == 0) {
+        if(status == 1) {
             loginSuccess(username);
         } else {
             loginFailed("账号密码不匹配");

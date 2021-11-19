@@ -8,6 +8,7 @@
 #include <QWidget>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStyleOption>
@@ -25,15 +26,15 @@ public:
     void setShow(QWidget* widget);
 private:
     QWidget* horizontalLayoutWidget;
-    QHBoxLayout* list;
-    QPushButton* pushButtonThree;
     QPushButton* pushButtonOne;
     QPushButton* pushButtonTwo;
+    QLineEdit* roomEdit;
     QListView* onLines;
     QTextEdit* chat;
     QLineEdit* inputEdit;
-    QPushButton* select;
+    QComboBox* select;
     QPushButton* push;
+    QGridLayout* gridLayout;
     QFrame* roomOne;
     QFrame* roomTwo;
     QFrame* roomThree;

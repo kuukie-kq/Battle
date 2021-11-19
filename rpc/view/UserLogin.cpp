@@ -30,13 +30,15 @@ int UserLogin::callBySocket(char*& request) {
     //通过sockaddr_in结构设置服务器地址和监听端口
     bzero(&server, sizeof(server));
     server.sin_family = AF_INET;
-    server.sin_addr.s_addr = htonl(INADDR_ANY);
+    server.sin_addr.s_addr = inet_addr("192.168.31.42");
     server.sin_port = htons(PORT);
     server_addr_length = sizeof(server);
     //数据请求
     int send_length = 0;
+    std::string rs = request;
     sprintf(requestLine, "%s", request);
-    send_length = sendto(fdSocket, requestLine, sizeof(requestLine), 0, (struct sockaddr*)&server, server_addr_length);
+    std::cerr << rs.size() << std::endl;
+    send_length = sendto(fdSocket, rs.c_str(), rs.size(), 0, (struct sockaddr*)&server, server_addr_length);
     if(send_length < 0) {
         error = "发送数据请求";
         return 1;
@@ -54,14 +56,42 @@ int UserLogin::callBySocket(char*& request) {
     return 0;
 }
 
-int UserLogin::login(QString username, QString password) {
+int UserLogin::login(const QString& username, const QString& password) {
     char data[MAX];
-    sprintf(data,"login<:>%s<->%s",username.toStdString().c_str(),password.toStdString().c_str());
+//    sprintf(data,"login<:>%s<->%s",username.toStdString().c_str(),password.toStdString().c_str());
+//    char* requestAndResponse = data;
+//    int call = callBySocket(requestAndResponse);
+//    if (call != 0) {
+//        return -1;
+//    }
+    /**
+     * json request start
+     */
+    neb::CJsonObject jsonObject;
+    jsonObject.Add("methodName","login");
+    jsonObject.Add("className","BaseService");
+    jsonObject.AddEmptySubArray("argCls");
+    jsonObject["argCls"].Add("java.lang.String");
+    jsonObject["argCls"].Add("java.lang.String");
+    jsonObject.AddEmptySubArray("arg");
+    jsonObject["arg"].Add(username.toStdString());
+    jsonObject["arg"].Add(password.toStdString());
+    std::cerr << jsonObject.ToString() << std::endl;
+    sprintf(data,"%s",jsonObject.ToString().c_str());
     char* requestAndResponse = data;
     int call = callBySocket(requestAndResponse);
     if (call != 0) {
         return -1;
     }
+    std::string result;
+    neb::CJsonObject test(requestAndResponse);
+    test.Get("result",result);
+    std::cerr << test.ToString() << std::endl;
+    std::cerr << result << std::endl;
+    return atoi(result.c_str());
+    /**
+     * json response end
+     */
     return atoi(requestAndResponse);
 }
 

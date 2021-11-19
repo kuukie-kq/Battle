@@ -14,8 +14,10 @@
 #include <QString>
 #include <cstring>
 #include <vector>
+#include <arpa/inet.h>
+#include "../../util/json/CJSonObject.h"
 #define MAX 1024
-#define PORT 9527
+#define PORT 9999
 
 class UserLogin {
 private:
@@ -27,7 +29,7 @@ private:
     int callBySocket(char*& request);
     QString error;
 public:
-    int login(QString username,QString password);
+    int login(const QString& username,const QString& password);
 };
 
 class TestUserLogin {

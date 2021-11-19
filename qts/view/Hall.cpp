@@ -20,6 +20,7 @@ Hall::~Hall() {
     delete roomThree;
     delete roomTwo;
     delete roomOne;
+    delete gridLayout;
     delete push;
     delete select;
     delete inputEdit;
@@ -27,43 +28,35 @@ Hall::~Hall() {
     delete onLines;
     delete pushButtonOne;
     delete pushButtonTwo;
-    delete pushButtonThree;
-    delete list;
     delete horizontalLayoutWidget;
 }
 
 void Hall::setShow(QWidget* widget) {
     horizontalLayoutWidget->setParent(widget);
+    pushButtonOne->setParent(widget);
+    roomEdit->setParent(widget);
+    pushButtonTwo->setParent(widget);
     onLines->setParent(widget);
     chat->setParent(widget);
     inputEdit->setParent(widget);
     select->setParent(widget);
     push->setParent(widget);
-    roomOne->setParent(widget);
-    roomTwo->setParent(widget);
-    roomThree->setParent(widget);
-    roomFour->setParent(widget);
-    roomFive->setParent(widget);
-    roomSix->setParent(widget);
-    roomSeven->setParent(widget);
-    roomEight->setParent(widget);
-    roomNine->setParent(widget);
 }
 
 void Hall::setUI() {
     horizontalLayoutWidget = new QWidget();
-    horizontalLayoutWidget->setGeometry(40,20,800,100);
-    list = new QHBoxLayout();
-    pushButtonThree = new QPushButton();
-    pushButtonThree->setText("新建房间");
-    pushButtonTwo = new QPushButton();
-    pushButtonTwo->setText("刷新");
+    horizontalLayoutWidget->setGeometry(50,100,750,500);
+
     pushButtonOne = new QPushButton();
-    pushButtonOne->setText("查找房间");
-    list->addWidget(pushButtonThree);
-    list->addWidget(pushButtonOne);
-    list->addWidget(pushButtonTwo);
-    horizontalLayoutWidget->setLayout(list);
+    pushButtonOne->setGeometry(50,50,80,30);
+    pushButtonOne->setText("新建房间");
+
+    roomEdit = new QLineEdit();
+    roomEdit->setGeometry(400,50,100,30);
+
+    pushButtonTwo = new QPushButton();
+    pushButtonTwo->setGeometry(300,50,80,30);
+    pushButtonTwo->setText("查找房间");
 
     onLines = new QListView();
     onLines->setGeometry(850,50,400,400);
@@ -73,60 +66,68 @@ void Hall::setUI() {
     chat->setEnabled(false);
 
     inputEdit = new QLineEdit();
-    inputEdit->setGeometry(895,700,300,30);
+    inputEdit->setGeometry(940,700,250,30);
 
-    select = new QPushButton();
-    select->setGeometry(850,700,40,30);
-    select->setText("选择");
+    select = new QComboBox();
+    select->setGeometry(850,700,80,30);
+    select->addItem("当前");
+    select->addItem("公屏");
+    select->addItem("小队");
+    select->addItem("协会");
 
     push = new QPushButton();
     push->setGeometry(1200,700,50,30);
     push->setText("Enter");
 
+    gridLayout = new QGridLayout();
+    gridLayout->setContentsMargins(10,10,10,10);
+
     roomOne = new QFrame();
-    roomOne->setGeometry(40,120,120,100);
     roomOne->setFrameShape(QFrame::StyledPanel);
     roomOne->setFrameShadow(QFrame::Raised);
+    gridLayout->addWidget(roomOne,0,0);
 
     roomTwo = new QFrame();
-    roomTwo->setGeometry(170,120,120,100);
     roomTwo->setFrameShape(QFrame::StyledPanel);
     roomTwo->setFrameShadow(QFrame::Raised);
+    gridLayout->addWidget(roomTwo,0,1);
 
     roomThree = new QFrame();
-    roomThree->setGeometry(300,120,120,100);
     roomThree->setFrameShape(QFrame::StyledPanel);
     roomThree->setFrameShadow(QFrame::Raised);
+    gridLayout->addWidget(roomThree,0,2);
 
     roomFour = new QFrame();
-    roomFour->setGeometry(40,240,120,100);
     roomFour->setFrameShape(QFrame::StyledPanel);
     roomFour->setFrameShadow(QFrame::Raised);
+    gridLayout->addWidget(roomFour,1,0);
 
     roomFive = new QFrame();
-    roomFive->setGeometry(170,240,120,100);
     roomFive->setFrameShape(QFrame::StyledPanel);
     roomFive->setFrameShadow(QFrame::Raised);
+    gridLayout->addWidget(roomFive,1,1);
 
     roomSix = new QFrame();
-    roomSix->setGeometry(300,240,120,100);
     roomSix->setFrameShape(QFrame::StyledPanel);
     roomSix->setFrameShadow(QFrame::Raised);
+    gridLayout->addWidget(roomSix,1,2);
 
     roomSeven = new QFrame();
-    roomSeven->setGeometry(40,350,120,100);
     roomSeven->setFrameShape(QFrame::StyledPanel);
     roomSeven->setFrameShadow(QFrame::Raised);
+    gridLayout->addWidget(roomSix,2,0);
 
     roomEight = new QFrame();
-    roomEight->setGeometry(170,350,120,100);
     roomEight->setFrameShape(QFrame::StyledPanel);
     roomEight->setFrameShadow(QFrame::Raised);
+    gridLayout->addWidget(roomSix,2,1);
 
     roomNine = new QFrame();
-    roomNine->setGeometry(170,350,120,100);
     roomNine->setFrameShape(QFrame::StyledPanel);
     roomNine->setFrameShadow(QFrame::Raised);
+    gridLayout->addWidget(roomSix,2,2);
+
+    horizontalLayoutWidget->setLayout(gridLayout);
 }
 
 void Hall::setQSS() {
