@@ -17,7 +17,8 @@
 #include <arpa/inet.h>
 #include "../../util/json/CJSonObject.h"
 #define MAX 1024
-#define PORT 9999
+#define HOST "192.168.31.42"
+#define PORT 9527
 
 class UserLogin {
 private:

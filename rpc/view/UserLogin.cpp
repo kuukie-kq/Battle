@@ -30,7 +30,7 @@ int UserLogin::callBySocket(char*& request) {
     //通过sockaddr_in结构设置服务器地址和监听端口
     bzero(&server, sizeof(server));
     server.sin_family = AF_INET;
-    server.sin_addr.s_addr = inet_addr("192.168.31.42");
+    server.sin_addr.s_addr = inet_addr(HOST);
     server.sin_port = htons(PORT);
     server_addr_length = sizeof(server);
     //数据请求
@@ -52,6 +52,7 @@ int UserLogin::callBySocket(char*& request) {
     }
     QString response = responseLine;
     request = (char *)response.toStdString().c_str();
+    request = responseLine;
     close(fdSocket);
     return 0;
 }
@@ -73,9 +74,9 @@ int UserLogin::login(const QString& username, const QString& password) {
     jsonObject.AddEmptySubArray("argCls");
     jsonObject["argCls"].Add("java.lang.String");
     jsonObject["argCls"].Add("java.lang.String");
-    jsonObject.AddEmptySubArray("arg");
-    jsonObject["arg"].Add(username.toStdString());
-    jsonObject["arg"].Add(password.toStdString());
+    jsonObject.AddEmptySubArray("args");
+    jsonObject["args"].Add(username.toStdString());
+    jsonObject["args"].Add(password.toStdString());
     std::cerr << jsonObject.ToString() << std::endl;
     sprintf(data,"%s",jsonObject.ToString().c_str());
     char* requestAndResponse = data;
@@ -84,6 +85,7 @@ int UserLogin::login(const QString& username, const QString& password) {
         return -1;
     }
     std::string result;
+    std::cerr << requestAndResponse << std::endl;
     neb::CJsonObject test(requestAndResponse);
     test.Get("result",result);
     std::cerr << test.ToString() << std::endl;
