@@ -19,11 +19,12 @@ UdpListen::UdpListen() {
     if(bind(fd_socket,(struct sockaddr*)&server,server_addr_length) < 0) {
         error = "绑定端口监听失败";
     }
+    client_addr_length = sizeof(client);
 }
 
 UdpListen::~UdpListen() = default;
 
-int UdpListen::request(char *&request) {
+int UdpListen::request(char* request) {
     std::string rs = request;
     return sendto(fd_socket,rs.c_str(),rs.size(),0,(struct sockaddr*)&client,client_addr_length);
 }

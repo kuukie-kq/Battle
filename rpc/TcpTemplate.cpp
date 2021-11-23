@@ -2,17 +2,19 @@
 // Created by kuukie on 2021/11/21.
 //
 
-#include "Template.h"
+#include "TcpTemplate.h"
 
-void Template::ping(char* request) {
-    rpc::tcp->ping();
+void TcpTemplate::ping(char* request) {
+    if(rpc::tcp->ping() < 0) {
+        return;
+    }
     rpc::tcp->request(request);
 }
 
-void Template::pong(char*& response) {
+void TcpTemplate::pong(char*& response) {
     rpc::tcp->response();
     if(rpc::tcp->error.empty()) {
-        char res[1024];
+        char res[MAX];
         strcpy(res,rpc::tcp->message.c_str());
         response = res;
     } else {

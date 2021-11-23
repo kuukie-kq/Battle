@@ -10,13 +10,12 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <unistd.h>
-#include <strings.h>
 #include <cstring>
 #include <vector>
 #include <arpa/inet.h>
 
 #define MAX 1024
-#define HOST "192.168.31.42"
+#define HOST "127.0.0.1"
 #define PORT 9527
 
 class UdpListen {
@@ -31,7 +30,7 @@ private:
 public:
     UdpListen();
     ~UdpListen();
-    int request(char*& request);
+    int request(char* request);
     void response();
     std::string error;
     std::string message;

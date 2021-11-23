@@ -13,6 +13,11 @@ set(Qt5Widgets_DIR /opt/Qt5.9.9/5.9.9/gcc_64/lib/cmake/Qt5Widgets)
 #找QT库
 find_package(Qt5Widgets REQUIRED NO_DEFAULT_PATH)
 
-add_executable(Battle main.cpp qts/view/Login.cpp qts/view/Login.h qts/DivUI.cpp qts/DivUI.h qts/center/Start.cpp qts/center/Start.h qts/view/Hall.cpp qts/view/Hall.h qts/view/Edit.cpp qts/view/Edit.h qts/view/Package.cpp qts/view/Package.h qts/view/Ready.cpp qts/view/Ready.h rpc/view/UserLogin.cpp rpc/view/UserLogin.h util/json/CJsonObject.cpp util/json/CJsonObject.h util/json/cJson.cpp util/json/cJson.h util/tcp/TcpConnect.cpp util/tcp/TcpConnect.h util/tcp/TcpListen.cpp util/tcp/TcpListen.h util/udp/UdpConnect.cpp util/udp/UdpConnect.h util/udp/UdpListen.cpp util/udp/UdpListen.h rpc/Template.cpp rpc/Template.h)
+add_subdirectory(util/json)
+add_subdirectory(util/tcp)
+add_subdirectory(util/udp)
+add_subdirectory(rpc)
 
-target_link_libraries(Battle Qt5::Widgets)
+add_executable(Battle main.cpp qts/view/Login.cpp qts/view/Login.h qts/DivUI.cpp qts/DivUI.h qts/center/Start.cpp qts/center/Start.h qts/view/Hall.cpp qts/view/Hall.h qts/view/Edit.cpp qts/view/Edit.h qts/view/Package.cpp qts/view/Package.h qts/view/Ready.cpp qts/view/Ready.h qts/view/Lobby.cpp qts/view/Lobby.h rpc/view/UserLogin.cpp rpc/view/UserLogin.h)
+
+target_link_libraries(Battle Qt5::Widgets JSON TCP UDP RPC)

@@ -1,6 +1,5 @@
 #include <iostream>
 #include "qts/DivUI.h"
-#include "rpc/Template.h"
 
 int main(int argc,char** argv) {
     std::cout << "Hello, World!" << std::endl;
@@ -17,7 +16,7 @@ int main(int argc,char** argv) {
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "util/json/CJSonObject.h"
+#include "util/json/CJsonObject.h"
 
 //int main()
 int main(int argc, char* argv[])

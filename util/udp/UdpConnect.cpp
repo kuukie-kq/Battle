@@ -19,7 +19,7 @@ UdpConnect::UdpConnect() {
 
 UdpConnect::~UdpConnect() = default;
 
-int UdpConnect::request(char *&request) {
+int UdpConnect::request(char* request) {
     std::string rs = request;
     return sendto(fd_socket,rs.c_str(),rs.size(),0,(struct sockaddr*)&server,server_addr_length);
 }
