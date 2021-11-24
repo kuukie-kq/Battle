@@ -16,6 +16,7 @@
 #include "../view/Ready.h"
 #include "../view/Package.h"
 #include "../view/Edit.h"
+#include "../view/Lobby.h"
 
 #define QSSSET(path) { \
     QFile file((path)); \
@@ -56,6 +57,8 @@ private:
     Package* package;
     QWidget* editWidget;
     Edit* edit;
+    QWidget* lobbyWidget;
+    Lobby* lobby;
 private slots:
     void statusMessage(const QString& message);
     void loginSuccess(const QString& username);
