@@ -150,3 +150,28 @@ int TestUserLogin::login(const QString& username, const QString& password) {
         return 0;
     }
 }
+
+int UserLogin::loginTest(const QString &username, const QString &password) {
+    char data[MAX];
+    neb::CJsonObject jsonObject;
+    jsonObject.Add("methodName","login");
+    jsonObject.Add("className","BaseService");
+    jsonObject.AddEmptySubArray("argCls");
+    jsonObject["argCls"].Add("java.lang.String");
+    jsonObject["argCls"].Add("java.lang.String");
+    jsonObject.AddEmptySubArray("args");
+    jsonObject["args"].Add(username.toStdString());
+    jsonObject["args"].Add(password.toStdString());
+    std::cerr << jsonObject.ToString() << std::endl;
+    sprintf(data,"%s",jsonObject.ToString().c_str());
+    char* requestAndResponse = data;
+
+    TcpTemplate::ping(requestAndResponse);
+    TcpTemplate::pong(requestAndResponse);
+
+    std::string result;
+    std::cerr << requestAndResponse << std::endl;
+    neb::CJsonObject test(requestAndResponse);
+    test.Get("result",result);
+    return atoi(result.c_str());
+}

@@ -16,6 +16,7 @@
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
 #include "../../rpc/view/UserLogin.h"
+#include "../../util/view/Calculate.h"
 
 class Login : public QWidget {
     Q_OBJECT

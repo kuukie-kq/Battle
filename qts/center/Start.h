@@ -11,12 +11,17 @@
 #include <QWidget>
 #include <QMenuBar>
 #include <QStatusBar>
+#include <QScreen>
+#include "../../util/view/Calculate.h"
 #include "../view/Login.h"
 #include "../view/Hall.h"
 #include "../view/Ready.h"
 #include "../view/Package.h"
 #include "../view/Edit.h"
 #include "../view/Lobby.h"
+
+#define WIDTH 1280
+#define HEIGHT 800
 
 #define QSSSET(path) { \
     QFile file((path)); \
@@ -62,6 +67,7 @@ private:
 private slots:
     void statusMessage(const QString& message);
     void loginSuccess(const QString& username);
+    void lobbySuccess();
     void hallSuccess(const QString& message);
     void readySuccess(const QString& message);
     void packageSuccess(const QString& message);

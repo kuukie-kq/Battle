@@ -28,12 +28,12 @@ void Login::setShow(QWidget* widget) {
 
 void Login::setUI() {
     layoutWidget = new QWidget();
-    layoutWidget->setGeometry(400,300,400,200);
+    layoutWidget->setGeometry(CENTER(1280,400), CENTER(800,200), 400, 200);
 
     gridLayout = new QGridLayout();
-    gridLayout->setContentsMargins(10,10,20,0);
+    gridLayout->setContentsMargins(10,10,10,10);
     horizontalLayout = new QHBoxLayout();
-    horizontalLayout->setContentsMargins(25,0,0,0);
+    horizontalLayout->setContentsMargins(10,0,10,0);
     pushButtonOne = new QPushButton();
     pushButtonOne->setText("登录");
     pushButtonOne->setShortcut(QKeySequence::InsertParagraphSeparator);
@@ -86,7 +86,7 @@ void Login::loginBarEvent() {
     } else {
         //rpc调用
         auto userLogin = new UserLogin();
-        int status = userLogin->login(username,password);
+        int status = userLogin->loginTest(username,password);
 
         if(status == 1) {
             loginSuccess(username);

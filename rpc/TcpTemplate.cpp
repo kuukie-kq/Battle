@@ -15,7 +15,7 @@ void TcpTemplate::pong(char*& response) {
     rpc::tcp->response();
     if(rpc::tcp->error.empty()) {
         char res[MAX];
-        strcpy(res,rpc::tcp->message.c_str());
+        sprintf(res,"%s",rpc::tcp->message.c_str());
         response = res;
     } else {
         response = "{\"result\":\"-1\"}";

@@ -16,8 +16,9 @@ find_package(Qt5Widgets REQUIRED NO_DEFAULT_PATH)
 add_subdirectory(util/json)
 add_subdirectory(util/tcp)
 add_subdirectory(util/udp)
+add_subdirectory(util/view)
 add_subdirectory(rpc)
 
 add_executable(Battle main.cpp qts/view/Login.cpp qts/view/Login.h qts/DivUI.cpp qts/DivUI.h qts/center/Start.cpp qts/center/Start.h qts/view/Hall.cpp qts/view/Hall.h qts/view/Edit.cpp qts/view/Edit.h qts/view/Package.cpp qts/view/Package.h qts/view/Ready.cpp qts/view/Ready.h qts/view/Lobby.cpp qts/view/Lobby.h rpc/view/UserLogin.cpp rpc/view/UserLogin.h)
 
-target_link_libraries(Battle Qt5::Widgets JSON TCP UDP RPC)
+target_link_libraries(Battle Qt5::Widgets JSON TCP UDP RPC VIEW)

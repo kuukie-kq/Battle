@@ -26,9 +26,12 @@ void Start::setUI() {
 }
 
 void Start::setQSS() {
-    setGeometry(400,200,1280,800);
-    setMinimumSize(1280,800);
-    setMaximumSize(1280,800);
+    QScreen* screen = QGuiApplication::primaryScreen();
+    QRect resolution = screen->availableGeometry();
+
+    setGeometry(CENTER(resolution.width(),WIDTH),CENTER(resolution.height(),HEIGHT),WIDTH,HEIGHT);
+    setMinimumSize(WIDTH,HEIGHT);
+    setMaximumSize(WIDTH,HEIGHT);
     setWindowTitle("登录界面");
     setWindowIcon(QIcon("../img/1D9A70788D7.png"));
     setObjectName("main");
@@ -48,13 +51,25 @@ void Start::statusMessage(const QString& message) {
 void Start::loginSuccess(const QString& username) {
     delete login;
     delete loginWidget;
-    UISET(hallWidget,hall,Hall,"../qss/view/hall.qss")
+    UISET(lobbyWidget,lobby,Lobby,"../qss/view/lobby.qss")
 
-    connect(hall,SIGNAL(entrance(QString)),this,SLOT(hallSuccess(QString)));
+    connect(lobby,SIGNAL(entrance()),this,SLOT(lobbySuccess()));
 
     setWindowTitle("坦克大战-游戏界面");
     this->window()->show();
     statusBar->showMessage("登录成功",10000);
+}
+
+void Start::lobbySuccess() {
+    delete lobby;
+    delete lobbyWidget;
+    UISET(hallWidget,hall,Hall,"../qss/view/hall.qss")
+
+    connect(hall,SIGNAL(entrance(QString)),this,SLOT(hallSuccess(QString)));
+
+    setWindowTitle("魔法庭-游戏大厅");
+    this->window()->show();
+    statusBar->showMessage("进入竞技",10000);
 }
 
 void Start::hallSuccess(const QString& message) {
@@ -93,9 +108,9 @@ void Start::packageSuccess(const QString& message) {
 void Start::editSuccess(const QString& message) {
     delete edit;
     delete editWidget;
-    UISET(hallWidget,hall,Hall,"../qss/view/hall.qss")
+    UISET(readyWidget,ready,Ready,"../qss/view/hall.qss")
 
-    connect(hall,SIGNAL(entrance(QString)),this,SLOT(hallSuccess(QString)));
+    connect(ready,SIGNAL(start(QString)),this,SLOT(readySuccess(QString)));
 
     this->window()->show();
     statusBar->showMessage(message,10000);

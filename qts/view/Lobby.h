@@ -25,17 +25,25 @@ public:
 private:
     QWidget* layoutWidget;
     QGridLayout* gridLayout;
+    QHBoxLayout* columnLayout;
     QPushButton* knapsack;
     QPushButton* task;
     QPushButton* competitive;
     QPushButton* ladder;
     QPushButton* friends;
+    QPushButton* setting;
     void setUI();
     void setQSS();
     void setSignal();
     signals:
-    void entrance(const char* name);
+    void entrance();
 private slots:
+    void knapsackEnter();
+    void taskEnter();
+    void friendsEnter();
+    void settingEnter();
+    void competitiveEnter();
+    void ladderEnter();
 };
 
 
