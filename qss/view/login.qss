@@ -11,14 +11,26 @@
     color: #7FFFD4;
 }
 
-.QPushButton {
+#username {
+    padding: 10px 40px;
+    background: #00FFFF;
+    border-radius: 20%;
+}
+
+#password{
+    padding: 10px 40px;
+    background: #00FFFF;
+    border-radius: 20%;
+}
+
+#login {
     padding: 10px 0;
     background: #7FFF00;
     border-radius: 10%;
 }
 
-.QLineEdit {
-    padding: 10px 40px;
-    background: #00FFFF;
-    border-radius: 20%;
+#register {
+    padding: 10px 0;
+    background: #7FFF00;
+    border-radius: 10%;
 }

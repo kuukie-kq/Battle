@@ -69,7 +69,10 @@ void Login::setUI() {
 }
 
 void Login::setQSS() {
-
+    lineEditOne->setObjectName("username");
+    lineEditTwo->setObjectName("password");
+    pushButtonOne->setObjectName("login");
+    pushButtonTwo->setObjectName("register");
 }
 
 void Login::setSignal() {
