@@ -11,6 +11,7 @@ Lobby::Lobby() {
 }
 
 Lobby::~Lobby() {
+    delete quit;
     delete friends;
     delete ladder;
     delete competitive;
@@ -45,10 +46,13 @@ void Lobby::setUI() {
     friends->setText("好友");
     setting = new QPushButton();
     setting->setText("环境");
+    quit = new QPushButton();
+    quit->setText("退出");
     columnLayout->addWidget(knapsack);
     columnLayout->addWidget(task);
     columnLayout->addWidget(friends);
     columnLayout->addWidget(setting);
+    columnLayout->addWidget(quit);
     gridLayout->addLayout(columnLayout,2,0);
 
     competitive = new QPushButton();
@@ -67,6 +71,7 @@ void Lobby::setQSS() {
     task->setObjectName("task");
     friends->setObjectName("friends");
     setting->setObjectName("setting");
+    quit->setObjectName("quit");
 }
 
 void Lobby::setSignal() {

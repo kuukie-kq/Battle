@@ -32,6 +32,7 @@ private:
     QPushButton* ladder;
     QPushButton* friends;
     QPushButton* setting;
+    QPushButton* quit;
     void setUI();
     void setQSS();
     void setSignal();
