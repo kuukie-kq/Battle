@@ -7,6 +7,7 @@
 
 #pragma once
 #include <cstring>
+#include <cstdlib>
 
 namespace cac {
     typedef struct user {
@@ -21,12 +22,18 @@ namespace cac {
 
     static struct user u;
     static struct room r;
+    static struct room* rs[9];
 }
 
 class Data {
 public:
+    static void setUserId(int id);
+    static int getUserId();
     static void setUserName(const char* username);
     static char* getUserName();
+    static void setUserSignature(const char* signature);
+    static char* getUserSignature();
+    static void setRoomMultiple(int index,int id,const char* name);
 };
 
 

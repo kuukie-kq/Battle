@@ -166,8 +166,8 @@ int UserLogin::loginTest(const QString &username, const QString &password) {
     sprintf(data,"%s",jsonObject.ToString().c_str());
     char* requestAndResponse = data;
 
-    TcpTemplate::ping(requestAndResponse);
-    TcpTemplate::pong(requestAndResponse);
+    UdpTemplate::ping(requestAndResponse);
+    UdpTemplate::pong(requestAndResponse);
 
     std::string result;
     std::cerr << requestAndResponse << std::endl;

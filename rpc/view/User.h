@@ -12,6 +12,7 @@
 #include <cstring>
 #include <vector>
 #include "../../util/json/CJsonObject.h"
+#include "../../cache/view/Data.h"
 #define NETCONN 0 // 0为udp，1位tcp
 #if (NETCONN == 0)
 #include "../UdpTemplate.h"

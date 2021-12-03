@@ -87,11 +87,9 @@ void Login::loginBarEvent() {
     } else if (password.count() == 0) {
         loginFailed("密码不能为空");
     } else {
-        //rpc调用
+        // rpc
         auto userLogin = new UserLogin();
-        int status = userLogin->loginTest(username,password);
-
-        if(status == 1) {
+        if(userLogin->loginTest(username,password) == 1) {
             loginSuccess(username);
         } else {
             loginFailed("账号密码不匹配");

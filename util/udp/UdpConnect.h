@@ -15,7 +15,7 @@
 #include <arpa/inet.h>
 
 #define MAX 1024
-#define HOST "127.0.0.1"
+#define HOST "192.168.31.42"
 #define PORT 9527
 
 class UdpConnect {

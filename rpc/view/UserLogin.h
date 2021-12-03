@@ -16,7 +16,7 @@
 #include <vector>
 #include <arpa/inet.h>
 #include "../../util/json/CJsonObject.h"
-#include "../TcpTemplate.h"
+#include "../UdpTemplate.h"
 
 #define MAX 1024
 #define HOST "192.168.31.42"

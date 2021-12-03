@@ -17,6 +17,7 @@
 #include <QtGui/QPainter>
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
+#include "../../rpc/view/User.h"
 
 class Hall : public QWidget {
     Q_OBJECT

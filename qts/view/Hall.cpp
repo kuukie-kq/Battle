@@ -5,6 +5,8 @@
 #include "Hall.h"
 
 Hall::Hall() {
+    // rpc
+    User::get_rooms_information();
     setUI();
     setQSS();
     setSignal();
@@ -115,17 +117,17 @@ void Hall::setUI() {
     roomSeven = new QFrame();
     roomSeven->setFrameShape(QFrame::StyledPanel);
     roomSeven->setFrameShadow(QFrame::Raised);
-    gridLayout->addWidget(roomSix,2,0);
+    gridLayout->addWidget(roomSeven,2,0);
 
     roomEight = new QFrame();
     roomEight->setFrameShape(QFrame::StyledPanel);
     roomEight->setFrameShadow(QFrame::Raised);
-    gridLayout->addWidget(roomSix,2,1);
+    gridLayout->addWidget(roomEight,2,1);
 
     roomNine = new QFrame();
     roomNine->setFrameShape(QFrame::StyledPanel);
     roomNine->setFrameShadow(QFrame::Raised);
-    gridLayout->addWidget(roomSix,2,2);
+    gridLayout->addWidget(roomNine,2,2);
 
     horizontalLayoutWidget->setLayout(gridLayout);
 }

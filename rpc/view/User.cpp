@@ -32,6 +32,11 @@ int User::login(const QString& username,const QString& password) {
     std::cerr << requestAndResponse << std::endl;
     neb::CJsonObject test(requestAndResponse);
     test.Get("result",result);
+
+    Data::setUserId(atoi(test["value"]("id").c_str()));
+    Data::setUserName(test["value"]("name").c_str());
+    Data::setUserSignature(test["value"]("sign").c_str());
+
     return atoi(result.c_str());
 }
 
@@ -59,6 +64,10 @@ int User::get_rooms_information() {
     std::cerr << requestAndResponse << std::endl;
     neb::CJsonObject test(requestAndResponse);
     test.Get("result",result);
+
+    test.Get("value",test);
+    Data::setRoomMultiple(0,atoi(test[0]("id").c_str()),test[0]("name").c_str());
+
     return atoi(result.c_str());
 }
 

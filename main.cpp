@@ -1,9 +1,55 @@
 #include <iostream>
 #include "qts/DivUI.h"
 
+int testPlayer() {
+    char data[MAX];
+    neb::CJsonObject jsonObject;
+    jsonObject.Add("methodName","playerPrepare");
+    jsonObject.Add("className","GameService");
+    jsonObject.Add("reqId","room1001:1");
+    jsonObject.AddEmptySubArray("argCls");
+    jsonObject["argCls"].Add("java.lang.String");
+    jsonObject["argCls"].Add("java.lang.String");
+    jsonObject["argCls"].Add("java.lang.String");
+    jsonObject.AddEmptySubArray("args");
+    jsonObject["args"].Add("room1001");
+    jsonObject["args"].Add("adv6");
+    jsonObject["args"].Add("true");
+    std::cerr << jsonObject.ToString() << std::endl;
+    sprintf(data,"%s",jsonObject.ToString().c_str());
+    char* requestAndResponse = data;
+
+    UdpTemplate::ping(requestAndResponse);
+    UdpTemplate::pong(requestAndResponse);
+
+    std::string result;
+    std::cerr << requestAndResponse << std::endl;
+    neb::CJsonObject test(requestAndResponse);
+    test.Get("result",result);
+    return 0;
+}
+
 int main(int argc,char** argv) {
     std::cout << "Hello, World!" << std::endl;
-    DivUI::run(argc,argv);
+    //DivUI::run(argc,argv);
+    char data[MAX];
+    neb::CJsonObject jsonObject;
+    jsonObject.Add("methodName","test");
+    jsonObject.Add("className","GameService");
+    jsonObject.Add("reqId","room1001:1");
+    jsonObject.AddEmptySubArray("argCls");
+//    jsonObject["argCls"].Add("java.lang.String");
+//    jsonObject["argCls"].Add("java.lang.String");
+//    jsonObject["argCls"].Add("boolean");
+    jsonObject.AddEmptySubArray("args");
+//    jsonObject["args"].Add("room1001");
+//    jsonObject["args"].Add("adv1");
+//    jsonObject["args"].Add("true");
+    std::cerr << jsonObject.ToString() << std::endl;
+    std::cerr << "json & " << jsonObject.ToString().size() << std::endl;
+    sprintf(data,"%s",jsonObject.ToString().c_str());
+    char* requestAndResponse = data;
+
     return 0;
 }
 
