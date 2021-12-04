@@ -36,6 +36,7 @@ int TcpConnect::request(char* request) const {
 }
 
 void TcpConnect::response() {
+    memset(responseLine,0,sizeof(responseLine));
     recv(fd_socket, responseLine, MAX, 0);
     message = responseLine;
 }

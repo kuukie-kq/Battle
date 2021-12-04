@@ -28,16 +28,16 @@ int User::login(const QString& username,const QString& password) {
     TcpTemplate::pong(requestAndResponse);
     #endif
 
-    std::string result;
+    int result;
     std::cerr << requestAndResponse << std::endl;
     neb::CJsonObject test(requestAndResponse);
     test.Get("result",result);
 
     Data::setUserId(atoi(test["value"]("id").c_str()));
-    Data::setUserName(test["value"]("name").c_str());
-    Data::setUserSignature(test["value"]("sign").c_str());
+    Data::setUserName(test["value"]("username").c_str());
+    Data::setUserSignature(test["value"]("gender").c_str());
 
-    return atoi(result.c_str());
+    return result;
 }
 
 int User::get_rooms_information() {
@@ -60,15 +60,16 @@ int User::get_rooms_information() {
     TcpTemplate::pong(requestAndResponse);
     #endif
 
-    std::string result;
+    int result;
     std::cerr << requestAndResponse << std::endl;
     neb::CJsonObject test(requestAndResponse);
     test.Get("result",result);
 
-    test.Get("value",test);
-    Data::setRoomMultiple(0,atoi(test[0]("id").c_str()),test[0]("name").c_str());
+    for(int i = 0;i < atoi(test["value"]("size").c_str()) && i < 9;i++) {
+        Data::setRoomMultiple(i,atoi(test["value"]["value"][i]("roomID").c_str()),test["value"]["value"][i]("roomName").c_str());
+    }
 
-    return atoi(result.c_str());
+    return result;
 }
 
 int User::find_room_information(const QString& room) {
@@ -129,4 +130,33 @@ int User::enter_room(const QString& room) {
     neb::CJsonObject test(requestAndResponse);
     test.Get("result",result);
     return atoi(result.c_str());
+}
+
+int User::enter_channel() {
+    char data[MAX];
+    neb::CJsonObject jsonObject;
+    jsonObject.Add("methodName","strategyRoutines");
+    jsonObject.Add("className","GameService");
+    jsonObject.Add("reqId","room808:1");
+    jsonObject.AddEmptySubArray("argCls");
+    jsonObject.AddEmptySubArray("args");
+    std::cerr << jsonObject.ToString() << std::endl;
+    std::cerr << "json & " << jsonObject.ToString().size() << std::endl;
+    sprintf(data,"%s",jsonObject.ToString().c_str());
+    char* requestAndResponse = data;
+
+#if (NETCONN == 0)
+    UdpTemplate::ping(requestAndResponse);
+    UdpTemplate::pong(requestAndResponse);
+#elif (NETCONN == 1)
+    TcpTemplate::ping(requestAndResponse);
+    TcpTemplate::pong(requestAndResponse);
+#endif
+
+    int result;
+    std::cerr << requestAndResponse << std::endl;
+    neb::CJsonObject test(requestAndResponse);
+    test.Get("result",result);
+
+    return result;
 }

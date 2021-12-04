@@ -28,6 +28,7 @@ public:
     static int find_room_information(const QString& room);
     static int enter_room(const QString& room);
     static int create_room();
+    static int enter_channel();
 };
 
 

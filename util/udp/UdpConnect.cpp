@@ -25,6 +25,7 @@ int UdpConnect::request(char* request) {
 }
 
 void UdpConnect::response() {
+    memset(responseLine,0,sizeof(responseLine));
     if(recvfrom(fd_socket,responseLine,sizeof(responseLine),0,(struct sockaddr*)&server,&server_addr_length) < 0) {
         error = "接收数据响应错误";
     }
