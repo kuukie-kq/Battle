@@ -13,7 +13,7 @@ int Data::getUserId() {
 }
 
 void Data::setUserName(const char* username) {
-    strcpy(cac::u.user_name,username);
+    cac::u.user_name = strdup(username);
 }
 
 char* Data::getUserName() {
@@ -21,7 +21,7 @@ char* Data::getUserName() {
 }
 
 void Data::setUserSignature(const char* signature) {
-    strcpy(cac::u.user_signature,signature);
+    cac::u.user_signature = strdup(signature);
 }
 
 char* Data::getUserSignature() {
@@ -34,5 +34,21 @@ void Data::setRoomMultiple(int index, int id, const char *name) {
     }
     cac::rs[index] = (struct cac::room *)malloc(sizeof(struct cac::room));
     cac::rs[index]->room_id = id;
-    strcpy(cac::rs[index]->room_name,name);
+    cac::rs[index]->room_name = strdup(name);
+}
+
+int Data::getRoomIdMultiple(int index) {
+    if(cac::rs[index] == nullptr) {
+        return -1;
+    } else {
+        return cac::rs[index]->room_id;
+    }
+}
+
+char* Data::getRoomNameMultiple(int index) {
+    if(cac::rs[index] == nullptr) {
+        return "none";
+    } else {
+        return cac::rs[index]->room_name;
+    }
 }

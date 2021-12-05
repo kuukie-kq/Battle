@@ -34,6 +34,8 @@ public:
     static void setUserSignature(const char* signature);
     static char* getUserSignature();
     static void setRoomMultiple(int index,int id,const char* name);
+    static int getRoomIdMultiple(int index);
+    static char* getRoomNameMultiple(int index);
 };
 
 
