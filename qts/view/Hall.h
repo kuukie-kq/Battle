@@ -17,7 +17,10 @@
 #include <QtGui/QPainter>
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QVBoxLayout>
 #include "../../rpc/view/User.h"
+#include "../../cache/view/Data.h"
 
 class Hall : public QWidget {
     Q_OBJECT
@@ -35,16 +38,43 @@ private:
     QLineEdit* inputEdit;
     QComboBox* select;
     QPushButton* push;
-    QGridLayout* gridLayout;
-    QFrame* roomOne;
-    QFrame* roomTwo;
-    QFrame* roomThree;
-    QFrame* roomFour;
-    QFrame* roomFive;
-    QFrame* roomSix;
-    QFrame* roomSeven;
-    QFrame* roomEight;
-    QFrame* roomNine;
+    QVBoxLayout* listLayout;
+    QHBoxLayout* roomOneLayout;
+    QTextEdit* roomOneId;
+    QTextEdit* roomOneName;
+    QPushButton* roomOneEnter;
+    QHBoxLayout* roomTwoLayout;
+    QTextEdit* roomTwoId;
+    QTextEdit* roomTwoName;
+    QPushButton* roomTwoEnter;
+    QHBoxLayout* roomThreeLayout;
+    QTextEdit* roomThreeId;
+    QTextEdit* roomThreeName;
+    QPushButton* roomThreeEnter;
+    QHBoxLayout* roomFourLayout;
+    QTextEdit* roomFourId;
+    QTextEdit* roomFourName;
+    QPushButton* roomFourEnter;
+    QHBoxLayout* roomFiveLayout;
+    QTextEdit* roomFiveId;
+    QTextEdit* roomFiveName;
+    QPushButton* roomFiveEnter;
+    QHBoxLayout* roomSixLayout;
+    QTextEdit* roomSixId;
+    QTextEdit* roomSixName;
+    QPushButton* roomSixEnter;
+    QHBoxLayout* roomSevenLayout;
+    QTextEdit* roomSevenId;
+    QTextEdit* roomSevenName;
+    QPushButton* roomSevenEnter;
+    QHBoxLayout* roomEightLayout;
+    QTextEdit* roomEightId;
+    QTextEdit* roomEightName;
+    QPushButton* roomEightEnter;
+    QHBoxLayout* roomNineLayout;
+    QTextEdit* roomNineId;
+    QTextEdit* roomNineName;
+    QPushButton* roomNineEnter;
     void setUI();
     void setQSS();
     void setSignal();
@@ -52,6 +82,15 @@ private:
     void entrance(QString message);
 private slots:
     void entrancePush();
+    void enterOne();
+    void enterTwo();
+    void enterThree();
+    void enterFour();
+    void enterFive();
+    void enterSix();
+    void enterSeven();
+    void enterEight();
+    void enterNine();
 };
 
 #endif //BATTLE_HALL_H

@@ -6,23 +6,51 @@
 
 Hall::Hall() {
     // rpc
-    User::get_rooms_information();
+    //User::get_rooms_information();
+
     setUI();
     setQSS();
     setSignal();
 }
 
 Hall::~Hall() {
-    delete roomNine;
-    delete roomEight;
-    delete roomSeven;
-    delete roomSix;
-    delete roomFive;
-    delete roomFour;
-    delete roomThree;
-    delete roomTwo;
-    delete roomOne;
-    delete gridLayout;
+    delete roomNineEnter;
+    delete roomNineName;
+    delete roomNineId;
+    delete roomNineLayout;
+    delete roomEightEnter;
+    delete roomEightName;
+    delete roomEightId;
+    delete roomEightLayout;
+    delete roomSevenEnter;
+    delete roomSevenName;
+    delete roomSevenId;
+    delete roomSevenLayout;
+    delete roomSixEnter;
+    delete roomSixName;
+    delete roomSixId;
+    delete roomSixLayout;
+    delete roomFiveEnter;
+    delete roomFiveName;
+    delete roomFiveId;
+    delete roomFiveLayout;
+    delete roomFourEnter;
+    delete roomFourName;
+    delete roomFourId;
+    delete roomFourLayout;
+    delete roomThreeEnter;
+    delete roomThreeName;
+    delete roomThreeId;
+    delete roomThreeLayout;
+    delete roomTwoEnter;
+    delete roomTwoName;
+    delete roomTwoId;
+    delete roomTwoLayout;
+    delete roomOneEnter;
+    delete roomOneName;
+    delete roomOneId;
+    delete roomOneLayout;
+    delete listLayout;
     delete push;
     delete select;
     delete inputEdit;
@@ -81,55 +109,118 @@ void Hall::setUI() {
     push->setGeometry(1200,700,50,30);
     push->setText("Enter");
 
-    gridLayout = new QGridLayout();
-    gridLayout->setContentsMargins(10,10,10,10);
+    listLayout = new QVBoxLayout();
+    listLayout->setContentsMargins(10,10,10,10);
 
-    roomOne = new QFrame();
-    roomOne->setFrameShape(QFrame::StyledPanel);
-    roomOne->setFrameShadow(QFrame::Raised);
-    gridLayout->addWidget(roomOne,0,0);
+    roomOneLayout = new QHBoxLayout();
+    roomOneEnter = new QPushButton();
+    roomOneId = new QTextEdit(std::to_string(Data::getRoomIdMultiple(0)).c_str());
+    roomOneId->setEnabled(false);
+    roomOneName = new QTextEdit(Data::getRoomNameMultiple(0));
+    roomOneName->setEnabled(false);
+    roomOneLayout->addWidget(roomOneId,0);
+    roomOneLayout->addWidget(roomOneName,1);
+    roomOneLayout->addWidget(roomOneEnter,2);
 
-    roomTwo = new QFrame();
-    roomTwo->setFrameShape(QFrame::StyledPanel);
-    roomTwo->setFrameShadow(QFrame::Raised);
-    gridLayout->addWidget(roomTwo,0,1);
+    listLayout->addLayout(roomOneLayout);
 
-    roomThree = new QFrame();
-    roomThree->setFrameShape(QFrame::StyledPanel);
-    roomThree->setFrameShadow(QFrame::Raised);
-    gridLayout->addWidget(roomThree,0,2);
+    roomTwoLayout = new QHBoxLayout();
+    roomTwoEnter = new QPushButton();
+    roomTwoId = new QTextEdit(std::to_string(Data::getRoomIdMultiple(1)).c_str());
+    roomTwoId->setEnabled(false);
+    roomTwoName = new QTextEdit(Data::getRoomNameMultiple(1));
+    roomTwoName->setEnabled(false);
+    roomTwoLayout->addWidget(roomTwoId,0);
+    roomTwoLayout->addWidget(roomTwoName,1);
+    roomTwoLayout->addWidget(roomTwoEnter,2);
 
-    roomFour = new QFrame();
-    roomFour->setFrameShape(QFrame::StyledPanel);
-    roomFour->setFrameShadow(QFrame::Raised);
-    gridLayout->addWidget(roomFour,1,0);
+    listLayout->addLayout(roomOneLayout);
 
-    roomFive = new QFrame();
-    roomFive->setFrameShape(QFrame::StyledPanel);
-    roomFive->setFrameShadow(QFrame::Raised);
-    gridLayout->addWidget(roomFive,1,1);
+    roomThreeLayout = new QHBoxLayout();
+    roomThreeEnter = new QPushButton();
+    roomThreeId = new QTextEdit(std::to_string(Data::getRoomIdMultiple(2)).c_str());
+    roomThreeId->setEnabled(false);
+    roomThreeName = new QTextEdit(Data::getRoomNameMultiple(2));
+    roomThreeName->setEnabled(false);
+    roomThreeLayout->addWidget(roomThreeId,0);
+    roomThreeLayout->addWidget(roomThreeName,1);
+    roomThreeLayout->addWidget(roomThreeEnter,2);
 
-    roomSix = new QFrame();
-    roomSix->setFrameShape(QFrame::StyledPanel);
-    roomSix->setFrameShadow(QFrame::Raised);
-    gridLayout->addWidget(roomSix,1,2);
+    listLayout->addLayout(roomThreeLayout);
 
-    roomSeven = new QFrame();
-    roomSeven->setFrameShape(QFrame::StyledPanel);
-    roomSeven->setFrameShadow(QFrame::Raised);
-    gridLayout->addWidget(roomSeven,2,0);
+    roomFourLayout = new QHBoxLayout();
+    roomFourEnter = new QPushButton();
+    roomFourId = new QTextEdit(std::to_string(Data::getRoomIdMultiple(3)).c_str());
+    roomFourId->setEnabled(false);
+    roomFourName = new QTextEdit(Data::getRoomNameMultiple(3));
+    roomFourName->setEnabled(false);
+    roomFourLayout->addWidget(roomFourId,0);
+    roomFourLayout->addWidget(roomFourName,1);
+    roomFourLayout->addWidget(roomFourEnter,2);
 
-    roomEight = new QFrame();
-    roomEight->setFrameShape(QFrame::StyledPanel);
-    roomEight->setFrameShadow(QFrame::Raised);
-    gridLayout->addWidget(roomEight,2,1);
+    listLayout->addLayout(roomFourLayout);
 
-    roomNine = new QFrame();
-    roomNine->setFrameShape(QFrame::StyledPanel);
-    roomNine->setFrameShadow(QFrame::Raised);
-    gridLayout->addWidget(roomNine,2,2);
+    roomFiveLayout = new QHBoxLayout();
+    roomFiveEnter = new QPushButton();
+    roomFiveId = new QTextEdit(std::to_string(Data::getRoomIdMultiple(4)).c_str());
+    roomFiveId->setEnabled(false);
+    roomFiveName = new QTextEdit(Data::getRoomNameMultiple(4));
+    roomFiveName->setEnabled(false);
+    roomFiveLayout->addWidget(roomFiveId,0);
+    roomFiveLayout->addWidget(roomFiveName,1);
+    roomFiveLayout->addWidget(roomFiveEnter,2);
 
-    horizontalLayoutWidget->setLayout(gridLayout);
+    listLayout->addLayout(roomFiveLayout);
+
+    roomSixLayout = new QHBoxLayout();
+    roomSixEnter = new QPushButton();
+    roomSixId = new QTextEdit(std::to_string(Data::getRoomIdMultiple(5)).c_str());
+    roomSixId->setEnabled(false);
+    roomSixName = new QTextEdit(Data::getRoomNameMultiple(5));
+    roomSixName->setEnabled(false);
+    roomSixLayout->addWidget(roomSixId,0);
+    roomSixLayout->addWidget(roomSixName,1);
+    roomSixLayout->addWidget(roomSixEnter,2);
+
+    listLayout->addLayout(roomSixLayout);
+
+    roomSevenLayout = new QHBoxLayout();
+    roomSevenEnter = new QPushButton();
+    roomSevenId = new QTextEdit(std::to_string(Data::getRoomIdMultiple(6)).c_str());
+    roomSevenId->setEnabled(false);
+    roomSevenName = new QTextEdit(Data::getRoomNameMultiple(6));
+    roomSevenName->setEnabled(false);
+    roomSevenLayout->addWidget(roomSevenId,0);
+    roomSevenLayout->addWidget(roomSevenName,1);
+    roomSevenLayout->addWidget(roomSevenEnter,2);
+
+    listLayout->addLayout(roomSevenLayout);
+
+    roomEightLayout = new QHBoxLayout();
+    roomEightEnter = new QPushButton();
+    roomEightId = new QTextEdit(std::to_string(Data::getRoomIdMultiple(7)).c_str());
+    roomEightId->setEnabled(false);
+    roomEightName = new QTextEdit(Data::getRoomNameMultiple(7));
+    roomEightName->setEnabled(false);
+    roomEightLayout->addWidget(roomEightId,0);
+    roomEightLayout->addWidget(roomEightName,1);
+    roomEightLayout->addWidget(roomEightEnter,2);
+
+    listLayout->addLayout(roomEightLayout);
+
+    roomNineLayout = new QHBoxLayout();
+    roomNineEnter = new QPushButton();
+    roomNineId = new QTextEdit(std::to_string(Data::getRoomIdMultiple(8)).c_str());
+    roomNineId->setEnabled(false);
+    roomNineName = new QTextEdit(Data::getRoomNameMultiple(8));
+    roomNineName->setEnabled(false);
+    roomNineLayout->addWidget(roomNineId,0);
+    roomNineLayout->addWidget(roomNineName,1);
+    roomNineLayout->addWidget(roomNineEnter,2);
+
+    listLayout->addLayout(roomNineLayout);
+
+    horizontalLayoutWidget->setLayout(listLayout);
 }
 
 void Hall::setQSS() {
@@ -138,8 +229,53 @@ void Hall::setQSS() {
 
 void Hall::setSignal() {
     connect(push,SIGNAL(clicked()),this,SLOT(entrancePush()));
+    connect(roomOneEnter,SIGNAL(clicked()),this,SLOT(enterOne()));
+    connect(roomTwoEnter,SIGNAL(clicked()),this,SLOT(enterTwo()));
+    connect(roomThreeEnter,SIGNAL(clicked()),this,SLOT(enterThree()));
+    connect(roomFourEnter,SIGNAL(clicked()),this,SLOT(enterFour()));
+    connect(roomFiveEnter,SIGNAL(clicked()),this,SLOT(enterFive()));
+    connect(roomSixEnter,SIGNAL(clicked()),this,SLOT(enterSix()));
+    connect(roomSevenEnter,SIGNAL(clicked()),this,SLOT(enterSeven()));
+    connect(roomEightEnter,SIGNAL(clicked()),this,SLOT(enterEight()));
+    connect(roomNineEnter,SIGNAL(clicked()),this,SLOT(enterNine()));
 }
 
 void Hall::entrancePush() {
     entrance("进入房间");
+}
+
+void Hall::enterOne() {
+
+}
+
+void Hall::enterTwo() {
+
+}
+
+void Hall::enterThree() {
+
+}
+
+void Hall::enterFour() {
+
+}
+
+void Hall::enterFive() {
+
+}
+
+void Hall::enterSix() {
+
+}
+
+void Hall::enterSeven() {
+
+}
+
+void Hall::enterEight() {
+
+}
+
+void Hall::enterNine() {
+
 }

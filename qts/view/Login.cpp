@@ -77,6 +77,7 @@ void Login::setQSS() {
 
 void Login::setSignal() {
     connect(pushButtonOne,SIGNAL(clicked()),this,SLOT(loginBarEvent()));
+    connect(pushButtonTwo,SIGNAL(clicked()),this,SLOT(registerBarEvent()));
 }
 
 void Login::loginBarEvent() {
@@ -88,11 +89,14 @@ void Login::loginBarEvent() {
         loginFailed("密码不能为空");
     } else {
         // rpc
-        auto userLogin = new UserLogin();
-        if(userLogin->loginTest(username,password) == 1) {
+        if(User::login(username,password) == 1) {
             loginSuccess(username);
         } else {
             loginFailed("账号密码不匹配");
         }
     }
+}
+
+void Login::registerBarEvent() {
+    loginSuccess("test");
 }

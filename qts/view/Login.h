@@ -15,7 +15,7 @@
 #include <QtGui/QPainter>
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
-#include "../../rpc/view/UserLogin.h"
+#include "../../rpc/view/User.h"
 #include "../../util/view/Calculate.h"
 #include "../../cache/view/Data.h"
 
@@ -44,6 +44,7 @@ private:
     void loginFailed(QString message);
 private slots:
     void loginBarEvent();
+    void registerBarEvent();
 };
 
 
