@@ -55,7 +55,7 @@ void Start::loginSuccess(const QString& username) {
 
     connect(lobby,SIGNAL(entrance()),this,SLOT(lobbySuccess()));
 
-    setWindowTitle("坦克大战-游戏界面");
+    setWindowTitle("魔法庭-游戏界面");
     this->window()->show();
     statusBar->showMessage("登录成功",10000);
 }
@@ -66,10 +66,23 @@ void Start::lobbySuccess() {
     UISET(hallWidget,hall,Hall,"../qss/view/hall.qss")
 
     connect(hall,SIGNAL(entrance(QString)),this,SLOT(hallSuccess(QString)));
+    connect(hall,SIGNAL(backExit()),this,SLOT(lobbyExit()));
 
     setWindowTitle("魔法庭-游戏大厅");
     this->window()->show();
     statusBar->showMessage("进入竞技",10000);
+}
+
+void Start::lobbyExit() {
+    delete hall;
+    delete hallWidget;
+    UISET(lobbyWidget,lobby,Lobby,"../qss/view/lobby.qss")
+
+    connect(lobby,SIGNAL(entrance()),this,SLOT(lobbySuccess()));
+
+    setWindowTitle("魔法庭-游戏大厅");
+    this->window()->show();
+    statusBar->showMessage("回到大厅",10000);
 }
 
 void Start::hallSuccess(const QString& message) {
@@ -79,6 +92,7 @@ void Start::hallSuccess(const QString& message) {
 
     connect(ready,SIGNAL(start(QString)),this,SLOT(readySuccess(QString)));
 
+    setWindowTitle("魔法庭-游戏大厅");
     this->window()->show();
     statusBar->showMessage(message,10000);
 }

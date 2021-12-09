@@ -63,6 +63,7 @@ Hall::~Hall() {
 
 void Hall::setShow(QWidget* widget) {
     horizontalLayoutWidget->setParent(widget);
+    back->setParent(widget);
     pushButtonOne->setParent(widget);
     roomEdit->setParent(widget);
     pushButtonTwo->setParent(widget);
@@ -77,15 +78,19 @@ void Hall::setUI() {
     horizontalLayoutWidget = new QWidget();
     horizontalLayoutWidget->setGeometry(50,100,750,500);
 
+    back = new QPushButton();
+    back->setGeometry(50,50,80,30);
+    back->setText("返回");
+
     pushButtonOne = new QPushButton();
-    pushButtonOne->setGeometry(50,50,80,30);
+    pushButtonOne->setGeometry(300,50,80,30);
     pushButtonOne->setText("新建房间");
 
     roomEdit = new QLineEdit();
     roomEdit->setGeometry(400,50,100,30);
 
     pushButtonTwo = new QPushButton();
-    pushButtonTwo->setGeometry(300,50,80,30);
+    pushButtonTwo->setGeometry(550,50,80,30);
     pushButtonTwo->setText("查找房间");
 
     onLines = new QListView();
@@ -120,7 +125,7 @@ void Hall::setUI() {
     roomOneName->setEnabled(false);
     roomOneLayout->addWidget(roomOneId,0);
     roomOneLayout->addWidget(roomOneName,1);
-    roomOneLayout->addWidget(roomOneEnter,2);
+    roomOneLayout->addWidget(roomOneEnter);
 
     listLayout->addLayout(roomOneLayout);
 
@@ -132,9 +137,9 @@ void Hall::setUI() {
     roomTwoName->setEnabled(false);
     roomTwoLayout->addWidget(roomTwoId,0);
     roomTwoLayout->addWidget(roomTwoName,1);
-    roomTwoLayout->addWidget(roomTwoEnter,2);
+    roomTwoLayout->addWidget(roomTwoEnter);
 
-    listLayout->addLayout(roomOneLayout);
+    listLayout->addLayout(roomTwoLayout);
 
     roomThreeLayout = new QHBoxLayout();
     roomThreeEnter = new QPushButton();
@@ -144,7 +149,7 @@ void Hall::setUI() {
     roomThreeName->setEnabled(false);
     roomThreeLayout->addWidget(roomThreeId,0);
     roomThreeLayout->addWidget(roomThreeName,1);
-    roomThreeLayout->addWidget(roomThreeEnter,2);
+    roomThreeLayout->addWidget(roomThreeEnter);
 
     listLayout->addLayout(roomThreeLayout);
 
@@ -156,7 +161,7 @@ void Hall::setUI() {
     roomFourName->setEnabled(false);
     roomFourLayout->addWidget(roomFourId,0);
     roomFourLayout->addWidget(roomFourName,1);
-    roomFourLayout->addWidget(roomFourEnter,2);
+    roomFourLayout->addWidget(roomFourEnter);
 
     listLayout->addLayout(roomFourLayout);
 
@@ -168,7 +173,7 @@ void Hall::setUI() {
     roomFiveName->setEnabled(false);
     roomFiveLayout->addWidget(roomFiveId,0);
     roomFiveLayout->addWidget(roomFiveName,1);
-    roomFiveLayout->addWidget(roomFiveEnter,2);
+    roomFiveLayout->addWidget(roomFiveEnter);
 
     listLayout->addLayout(roomFiveLayout);
 
@@ -180,7 +185,7 @@ void Hall::setUI() {
     roomSixName->setEnabled(false);
     roomSixLayout->addWidget(roomSixId,0);
     roomSixLayout->addWidget(roomSixName,1);
-    roomSixLayout->addWidget(roomSixEnter,2);
+    roomSixLayout->addWidget(roomSixEnter);
 
     listLayout->addLayout(roomSixLayout);
 
@@ -192,7 +197,7 @@ void Hall::setUI() {
     roomSevenName->setEnabled(false);
     roomSevenLayout->addWidget(roomSevenId,0);
     roomSevenLayout->addWidget(roomSevenName,1);
-    roomSevenLayout->addWidget(roomSevenEnter,2);
+    roomSevenLayout->addWidget(roomSevenEnter);
 
     listLayout->addLayout(roomSevenLayout);
 
@@ -204,7 +209,7 @@ void Hall::setUI() {
     roomEightName->setEnabled(false);
     roomEightLayout->addWidget(roomEightId,0);
     roomEightLayout->addWidget(roomEightName,1);
-    roomEightLayout->addWidget(roomEightEnter,2);
+    roomEightLayout->addWidget(roomEightEnter);
 
     listLayout->addLayout(roomEightLayout);
 
@@ -216,7 +221,7 @@ void Hall::setUI() {
     roomNineName->setEnabled(false);
     roomNineLayout->addWidget(roomNineId,0);
     roomNineLayout->addWidget(roomNineName,1);
-    roomNineLayout->addWidget(roomNineEnter,2);
+    roomNineLayout->addWidget(roomNineEnter);
 
     listLayout->addLayout(roomNineLayout);
 
@@ -229,6 +234,7 @@ void Hall::setQSS() {
 
 void Hall::setSignal() {
     connect(push,SIGNAL(clicked()),this,SLOT(entrancePush()));
+    connect(back,SIGNAL(clicked()),this,SIGNAL(backExit()));
     connect(roomOneEnter,SIGNAL(clicked()),this,SLOT(enterOne()));
     connect(roomTwoEnter,SIGNAL(clicked()),this,SLOT(enterTwo()));
     connect(roomThreeEnter,SIGNAL(clicked()),this,SLOT(enterThree()));

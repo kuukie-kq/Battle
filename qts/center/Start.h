@@ -68,6 +68,7 @@ private slots:
     void statusMessage(const QString& message);
     void loginSuccess(const QString& username);
     void lobbySuccess();
+    void lobbyExit();
     void hallSuccess(const QString& message);
     void readySuccess(const QString& message);
     void packageSuccess(const QString& message);

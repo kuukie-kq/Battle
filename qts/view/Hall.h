@@ -30,6 +30,7 @@ public:
     void setShow(QWidget* widget);
 private:
     QWidget* horizontalLayoutWidget;
+    QPushButton* back;
     QPushButton* pushButtonOne;
     QPushButton* pushButtonTwo;
     QLineEdit* roomEdit;
@@ -80,6 +81,7 @@ private:
     void setSignal();
     signals:
     void entrance(QString message);
+    void backExit();
 private slots:
     void entrancePush();
     void enterOne();
