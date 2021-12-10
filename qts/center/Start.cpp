@@ -92,7 +92,7 @@ void Start::hallSuccess(const QString& message) {
 
     connect(ready,SIGNAL(start(QString)),this,SLOT(readySuccess(QString)));
 
-    setWindowTitle("魔法庭-游戏大厅");
+    setWindowTitle("魔法庭-房间准备");
     this->window()->show();
     statusBar->showMessage(message,10000);
 }
@@ -104,6 +104,7 @@ void Start::readySuccess(const QString& message) {
 
     connect(package,SIGNAL(success(QString)),this,SLOT(packageSuccess(QString)));
 
+    setWindowTitle("魔法庭-整备装备");
     this->window()->show();
     statusBar->showMessage(message,10000);
 }
@@ -115,6 +116,7 @@ void Start::packageSuccess(const QString& message) {
 
     connect(edit,SIGNAL(finish(QString)),this,SLOT(editSuccess(QString)));
 
+    setWindowTitle("魔法庭-算法秀");
     this->window()->show();
     statusBar->showMessage(message,10000);
 }
@@ -126,6 +128,7 @@ void Start::editSuccess(const QString& message) {
 
     connect(ready,SIGNAL(start(QString)),this,SLOT(readySuccess(QString)));
 
+    setWindowTitle("魔法庭-房间准备");
     this->window()->show();
     statusBar->showMessage(message,10000);
 }
