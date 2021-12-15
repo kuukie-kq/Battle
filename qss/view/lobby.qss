@@ -36,3 +36,8 @@
     width: 300px;
     height: 150px;
 }
+
+#ladder {
+    width: 300px;
+    height: 150px;
+}
