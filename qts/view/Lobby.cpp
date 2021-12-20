@@ -72,6 +72,8 @@ void Lobby::setQSS() {
     friends->setObjectName("friends");
     setting->setObjectName("setting");
     quit->setObjectName("quit");
+    competitive->setObjectName("competitive");
+    ladder->setObjectName("ladder");
 }
 
 void Lobby::setSignal() {
