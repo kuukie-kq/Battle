@@ -33,8 +33,8 @@ void Lobby::setUI() {
     gridLayout->setRowStretch(0,2);
     gridLayout->setRowStretch(1,2);
     gridLayout->setRowStretch(2,1);
-    gridLayout->setColumnStretch(0,4);
-    gridLayout->setColumnStretch(1,6);
+//    gridLayout->setColumnStretch(0,4);
+//    gridLayout->setColumnStretch(1,6);
 
     columnLayout = new QHBoxLayout();
     columnLayout->setContentsMargins(20,10,20,10);
