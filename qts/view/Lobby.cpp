@@ -61,6 +61,7 @@ void Lobby::setUI() {
 
     ladder = new QPushButton();
     ladder->setText("名人堂");
+    ladder->autoDefault();
     gridLayout->addWidget(ladder,1,0);
 
     layoutWidget->setLayout(gridLayout);
