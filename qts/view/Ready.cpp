@@ -76,8 +76,23 @@ void Ready::setQSS() {
 
 void Ready::setSignal() {
     connect(pushButton,SIGNAL(clicked()),this,SLOT(pushButtonClick()));
+    connect(leaveRoom,SIGNAL(clicked()),this,SIGNAL(backExit()));
 }
 
 void Ready::pushButtonClick() {
-    start("开始游戏 对战");
+    Channel::login(this);
+    UdpServer::request(User::ready_room_json("1001"));
+    loading();
+}
+
+void Ready::loadingEnd() {
+    std::string string = Channel::get(this);
+    if(User::ready_room_json_ret(string) == 0) {
+        neb::CJsonObject jsonObject(string);
+        //解析业务
+
+        start("ajax");
+    } else {
+
+    }
 }

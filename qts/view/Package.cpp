@@ -140,5 +140,19 @@ void Package::setSignal() {
 }
 
 void Package::pushButtonSuccess() {
-    success("组装完成，对战编写");
+    Channel::login(this);
+    UdpServer::request(User::package_tank_json("",""));
+    loading();
+}
+
+void Package::loadingEnd() {
+    std::string string = Channel::get(this);
+    if(User::package_tank_json_ret(string) == 0) {
+        neb::CJsonObject jsonObject(string);
+        //解析业务
+
+        success("ajax");
+    } else {
+
+    }
 }

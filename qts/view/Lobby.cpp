@@ -102,9 +102,30 @@ void Lobby::settingEnter() {
 }
 
 void Lobby::competitiveEnter() {
-    entrance();
+    Channel::login(this);
+    UdpServer::request(User::rooms_json());
+    loading();
 }
 
 void Lobby::ladderEnter() {
 
+}
+
+void Lobby::loadingEnd() {
+    std::string string = Channel::get(this);
+    if(User::rooms_json_ret(string) == 0) {
+        neb::CJsonObject jsonObject(string);
+        //解析业务
+        for (int i=0;i<atoi(jsonObject("size").c_str()) && i<9;i++) {
+            int room_id = atoi(jsonObject["value"][i]("roomID").c_str());
+            std::string room_name = jsonObject["value"][i]("room_name");
+            std::string room_user_name = jsonObject["value"][i]("owner_name");
+            int players = atoi(jsonObject["value"][i]("players").c_str());
+            Data::setRoomMultiple(i,room_id,room_name.c_str(),room_user_name.c_str(),players);
+        }
+
+        entrance();
+    } else {
+
+    }
 }

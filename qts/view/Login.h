@@ -15,9 +15,8 @@
 #include <QtGui/QPainter>
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
-#include "../../rpc/view/User.h"
 #include "../../util/view/Calculate.h"
-#include "../../cache/view/Data.h"
+#include "../../util/server/UdpServer.h"
 
 class Login : public QWidget {
     Q_OBJECT
@@ -42,10 +41,11 @@ private:
     signals:
     void loginSuccess(QString username);
     void loginFailed(QString message);
+    void loading();
 private slots:
     void loginBarEvent();
     void registerBarEvent();
+    void loadingEnd();
 };
-
 
 #endif //BATTLE_LOGIN_H

@@ -6,9 +6,10 @@
 #define BATTLE_EDIT_H
 
 #include <QWidget>
-#include <QtWidgets/QFrame>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QTextEdit>
+#include <QFrame>
+#include <QPushButton>
+#include <QTextEdit>
+#include "../../util/server/UdpServer.h"
 
 class Edit : public QWidget {
     Q_OBJECT
@@ -28,9 +29,10 @@ private:
     void setSignal();
     signals:
     void finish(QString message);
+    void loading();
 private slots:
     void pushButtonFinish();
+    void loadingEnd();
 };
-
 
 #endif //BATTLE_EDIT_H

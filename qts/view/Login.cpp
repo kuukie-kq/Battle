@@ -3,6 +3,7 @@
 //
 
 #include "Login.h"
+#include "Load.h"
 
 Login::Login() {
     setUI();
@@ -88,15 +89,33 @@ void Login::loginBarEvent() {
     } else if (password.count() == 0) {
         loginFailed("密码不能为空");
     } else {
-        // rpc
-        if(User::login(username,password) == 1) {
-            loginSuccess(username);
-        } else {
-            loginFailed("账号密码不匹配");
-        }
+        // rpc ajax
+        Channel::login(this);
+        UdpServer::request(User::login_json(username.toStdString(),password.toStdString()));
+        loading();
     }
 }
 
 void Login::registerBarEvent() {
     loginSuccess("test");
+}
+
+void Login::loadingEnd() {
+    std::string string = Channel::get(this);
+    if(User::login_json_ret(string) == 0) {
+        neb::CJsonObject jsonObject(string);
+        //解析业务
+        int user_id = atoi(jsonObject["value"]("userID").c_str());
+        std::string user_name = jsonObject["value"]("userName");
+        std::string user_gender = jsonObject["value"]("gender");
+        int user_level = atoi(jsonObject["value"]("level").c_str());
+        Data::setUserId(user_id);
+        Data::setUserName(user_name.c_str());
+        Data::setUserGender(user_gender.c_str());
+        Data::setUserLevel(user_level);
+
+        loginSuccess(QString(user_name.c_str()));
+    } else {
+        loginFailed("远程调用错误");
+    }
 }

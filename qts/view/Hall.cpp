@@ -5,9 +5,6 @@
 #include "Hall.h"
 
 Hall::Hall() {
-    // rpc
-    //User::get_rooms_information();
-
     setUI();
     setQSS();
     setSignal();
@@ -119,6 +116,7 @@ void Hall::setUI() {
 
     roomOneLayout = new QHBoxLayout();
     roomOneEnter = new QPushButton();
+    roomOneEnter->setText("加入");
     roomOneId = new QTextEdit(std::to_string(Data::getRoomIdMultiple(0)).c_str());
     roomOneId->setEnabled(false);
     roomOneName = new QTextEdit(Data::getRoomNameMultiple(0));
@@ -131,6 +129,7 @@ void Hall::setUI() {
 
     roomTwoLayout = new QHBoxLayout();
     roomTwoEnter = new QPushButton();
+    roomTwoEnter->setText("加入");
     roomTwoId = new QTextEdit(std::to_string(Data::getRoomIdMultiple(1)).c_str());
     roomTwoId->setEnabled(false);
     roomTwoName = new QTextEdit(Data::getRoomNameMultiple(1));
@@ -143,6 +142,7 @@ void Hall::setUI() {
 
     roomThreeLayout = new QHBoxLayout();
     roomThreeEnter = new QPushButton();
+    roomThreeEnter->setText("加入");
     roomThreeId = new QTextEdit(std::to_string(Data::getRoomIdMultiple(2)).c_str());
     roomThreeId->setEnabled(false);
     roomThreeName = new QTextEdit(Data::getRoomNameMultiple(2));
@@ -155,6 +155,7 @@ void Hall::setUI() {
 
     roomFourLayout = new QHBoxLayout();
     roomFourEnter = new QPushButton();
+    roomFourEnter->setText("加入");
     roomFourId = new QTextEdit(std::to_string(Data::getRoomIdMultiple(3)).c_str());
     roomFourId->setEnabled(false);
     roomFourName = new QTextEdit(Data::getRoomNameMultiple(3));
@@ -167,6 +168,7 @@ void Hall::setUI() {
 
     roomFiveLayout = new QHBoxLayout();
     roomFiveEnter = new QPushButton();
+    roomFiveEnter->setText("加入");
     roomFiveId = new QTextEdit(std::to_string(Data::getRoomIdMultiple(4)).c_str());
     roomFiveId->setEnabled(false);
     roomFiveName = new QTextEdit(Data::getRoomNameMultiple(4));
@@ -179,6 +181,7 @@ void Hall::setUI() {
 
     roomSixLayout = new QHBoxLayout();
     roomSixEnter = new QPushButton();
+    roomSixEnter->setText("加入");
     roomSixId = new QTextEdit(std::to_string(Data::getRoomIdMultiple(5)).c_str());
     roomSixId->setEnabled(false);
     roomSixName = new QTextEdit(Data::getRoomNameMultiple(5));
@@ -191,6 +194,7 @@ void Hall::setUI() {
 
     roomSevenLayout = new QHBoxLayout();
     roomSevenEnter = new QPushButton();
+    roomSevenEnter->setText("加入");
     roomSevenId = new QTextEdit(std::to_string(Data::getRoomIdMultiple(6)).c_str());
     roomSevenId->setEnabled(false);
     roomSevenName = new QTextEdit(Data::getRoomNameMultiple(6));
@@ -203,6 +207,7 @@ void Hall::setUI() {
 
     roomEightLayout = new QHBoxLayout();
     roomEightEnter = new QPushButton();
+    roomEightEnter->setText("加入");
     roomEightId = new QTextEdit(std::to_string(Data::getRoomIdMultiple(7)).c_str());
     roomEightId->setEnabled(false);
     roomEightName = new QTextEdit(Data::getRoomNameMultiple(7));
@@ -215,6 +220,7 @@ void Hall::setUI() {
 
     roomNineLayout = new QHBoxLayout();
     roomNineEnter = new QPushButton();
+    roomNineEnter->setText("加入");
     roomNineId = new QTextEdit(std::to_string(Data::getRoomIdMultiple(8)).c_str());
     roomNineId->setEnabled(false);
     roomNineName = new QTextEdit(Data::getRoomNameMultiple(8));
@@ -229,59 +235,48 @@ void Hall::setUI() {
 }
 
 void Hall::setQSS() {
-
+    push->setObjectName("push");
+    back->setObjectName("back");
 }
 
 void Hall::setSignal() {
     connect(push,SIGNAL(clicked()),this,SLOT(entrancePush()));
     connect(back,SIGNAL(clicked()),this,SIGNAL(backExit()));
-    connect(roomOneEnter,SIGNAL(clicked()),this,SLOT(enterOne()));
-    connect(roomTwoEnter,SIGNAL(clicked()),this,SLOT(enterTwo()));
-    connect(roomThreeEnter,SIGNAL(clicked()),this,SLOT(enterThree()));
-    connect(roomFourEnter,SIGNAL(clicked()),this,SLOT(enterFour()));
-    connect(roomFiveEnter,SIGNAL(clicked()),this,SLOT(enterFive()));
-    connect(roomSixEnter,SIGNAL(clicked()),this,SLOT(enterSix()));
-    connect(roomSevenEnter,SIGNAL(clicked()),this,SLOT(enterSeven()));
-    connect(roomEightEnter,SIGNAL(clicked()),this,SLOT(enterEight()));
-    connect(roomNineEnter,SIGNAL(clicked()),this,SLOT(enterNine()));
+    connect(roomOneEnter,&QPushButton::clicked,this,[=] {roomEnter(0);});
+    connect(roomTwoEnter,&QPushButton::clicked,this,[=] {roomEnter(1);});
+    connect(roomThreeEnter,&QPushButton::clicked,this,[=] {roomEnter(2);});
+    connect(roomFourEnter,&QPushButton::clicked,this,[=] {roomEnter(3);});
+    connect(roomFiveEnter,&QPushButton::clicked,this,[=] {roomEnter(4);});
+    connect(roomSixEnter,&QPushButton::clicked,this,[=] {roomEnter(5);});
+    connect(roomSevenEnter,&QPushButton::clicked,this,[=] {roomEnter(6);});
+    connect(roomEightEnter,&QPushButton::clicked,this,[=] {roomEnter(7);});
+    connect(roomNineEnter,&QPushButton::clicked,this,[=] {roomEnter(8);});
+    connect(this,SIGNAL(roomEnter(int)),this,SLOT(enterMultiple(int)));
 }
 
 void Hall::entrancePush() {
     entrance("进入房间");
 }
 
-void Hall::enterOne() {
-
+void Hall::enterMultiple(int index) {
+    // rpc ajax
+    if(Data::getRoomIdMultiple(index) >= 0) {
+        Channel::login(this);
+        UdpServer::request(User::join_room_json(std::to_string(Data::getRoomIdMultiple(index)),std::to_string(Data::getUserId())));
+        loading();
+    } else {
+        //
+    }
 }
 
-void Hall::enterTwo() {
+void Hall::loadingEnd() {
+    std::string string = Channel::get(this);
+    if(User::join_room_json_ret(string) == 0) {
+        neb::CJsonObject jsonObject(string);
+        //解析业务
 
-}
+        entrance("ajax");
+    } else {
 
-void Hall::enterThree() {
-
-}
-
-void Hall::enterFour() {
-
-}
-
-void Hall::enterFive() {
-
-}
-
-void Hall::enterSix() {
-
-}
-
-void Hall::enterSeven() {
-
-}
-
-void Hall::enterEight() {
-
-}
-
-void Hall::enterNine() {
-
+    }
 }

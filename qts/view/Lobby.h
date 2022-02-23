@@ -15,6 +15,7 @@
 #include <QtGui/QPainter>
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
+#include "../../util/server/UdpServer.h"
 
 class Lobby : public QWidget {
     Q_OBJECT
@@ -38,6 +39,7 @@ private:
     void setSignal();
     signals:
     void entrance();
+    void loading();
 private slots:
     void knapsackEnter();
     void taskEnter();
@@ -45,6 +47,7 @@ private slots:
     void settingEnter();
     void competitiveEnter();
     void ladderEnter();
+    void loadingEnd();
 };
 
 

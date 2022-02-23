@@ -8,6 +8,7 @@
 #include <QWidget>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QPushButton>
+#include "../../util/server/UdpServer.h"
 
 class Package : public QWidget {
     Q_OBJECT
@@ -37,8 +38,10 @@ private:
     void setSignal();
     signals:
     void success(QString message);
+    void loading();
 private slots:
     void pushButtonSuccess();
+    void loadingEnd();
 };
 
 

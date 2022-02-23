@@ -19,8 +19,7 @@
 #include <QtCore/QTextStream>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QVBoxLayout>
-#include "../../rpc/view/User.h"
-#include "../../cache/view/Data.h"
+#include "../../util/server/UdpServer.h"
 
 class Hall : public QWidget {
     Q_OBJECT
@@ -82,17 +81,12 @@ private:
     signals:
     void entrance(QString message);
     void backExit();
+    void roomEnter(int index);
+    void loading();
 private slots:
     void entrancePush();
-    void enterOne();
-    void enterTwo();
-    void enterThree();
-    void enterFour();
-    void enterFive();
-    void enterSix();
-    void enterSeven();
-    void enterEight();
-    void enterNine();
+    void enterMultiple(int index);
+    void loadingEnd();
 };
 
 #endif //BATTLE_HALL_H

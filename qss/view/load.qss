@@ -1,0 +1,12 @@
+#main {
+    background-image: url("../img/ZA039AGFYD4.jpg");
+}
+
+.QStatusBar {
+    background-color: #333333;
+    color: #CC3333;
+}
+
+#label {
+    background-origin: inherit;
+}

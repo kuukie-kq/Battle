@@ -17,6 +17,19 @@ UdpConnect::UdpConnect() {
     server_addr_length = sizeof(server);
 }
 
+UdpConnect::UdpConnect(const char *host, int port) {
+    //使用socket，生成套接字文件描述符
+    if((fd_socket = socket(AF_INET,SOCK_DGRAM,0)) < 0) {
+        error = "网络绑定描述符错误";
+    }
+    //通过sock_addr_in结构设置服务器地址和监听端口
+    bzero(&server, sizeof(server));
+    server.sin_family = AF_INET;
+    server.sin_addr.s_addr = inet_addr(host);
+    server.sin_port = htons(port);
+    server_addr_length = sizeof(server);
+}
+
 UdpConnect::~UdpConnect() = default;
 
 int UdpConnect::request(char* request) {

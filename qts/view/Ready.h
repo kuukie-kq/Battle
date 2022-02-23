@@ -9,6 +9,7 @@
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QLabel>
+#include "../../util/server/UdpServer.h"
 
 class Ready : public QWidget {
     Q_OBJECT
@@ -30,8 +31,11 @@ private:
     void setSignal();
     signals:
     void start(QString message);
+    void backExit();
+    void loading();
 private slots:
     void pushButtonClick();
+    void loadingEnd();
 };
 
 

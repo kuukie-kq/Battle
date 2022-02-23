@@ -66,5 +66,20 @@ void Edit::setSignal() {
 }
 
 void Edit::pushButtonFinish() {
+    Channel::login(this);
+    UdpServer::request(User::create_tank_json("","",""));
+//    loading();
     finish("编写完成，模拟演练，结果为");
+}
+
+void Edit::loadingEnd() {
+    std::string string = Channel::get(this);
+    if(User::create_tank_json_ret(string) == 0) {
+        neb::CJsonObject jsonObject(string);
+        //解析业务
+
+        finish("ajax");
+    } else {
+
+    }
 }

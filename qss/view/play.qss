@@ -1,0 +1,16 @@
+#main {
+    background-image: url("../img/57394B3C65F.jpg");
+}
+
+.QStatusBar {
+    background-color: #333333;
+    color: #CC3333;
+}
+
+#mine {
+    background-color: #00FFFF;
+}
+
+#hers {
+    background-color: #7FFFD4;
+}
