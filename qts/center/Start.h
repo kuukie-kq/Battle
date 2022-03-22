@@ -72,7 +72,7 @@ private:
     QTimer* timer;
     signals:
     void loadingEnd();
-    void nextTime(int x,int y);
+    void nextTime(ng::GameFrame frame);
 private slots:
     void statusMessage(const QString& message);
     void loginSuccess(const QString& username);

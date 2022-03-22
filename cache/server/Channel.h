@@ -40,7 +40,7 @@ namespace cac {
         }
 
         bool push(const char* request) {
-            if (write + 1 == read) {
+            if ((write + 1) % size == read) {
                 printf("%s","queue full, try again");
                 return false;
             } else {
@@ -69,6 +69,13 @@ namespace cac {
             }
         }
     };
+    struct rooms {
+        int room_id;
+        char* room_name;
+        char* room_user_name;
+        int players;
+        char* room_visitor_name;
+    };
     // ajax event
     static int flag = 0;
     static void* view = nullptr;
@@ -78,7 +85,25 @@ namespace cac {
     static std::string host;
     static int port;
     // room game start data
+    static rooms r;
     static CyclicQueue* cyclic = new CyclicQueue();
+}
+
+namespace ng {
+    struct GameFrame {
+        int mineX;
+        int mineY;
+        int mineHP;
+        int mineST;
+        int myBulletX[10];
+        int myBulletY[10];
+        int herX;
+        int herY;
+        int herHP;
+        int herST;
+        int herBulletX[10];
+        int herBulletY[10];
+    };
 }
 
 class Channel {
@@ -91,6 +116,7 @@ public:
     static void event_ret(const std::string& data);
     static std::string get(void* view);
     static bool loadingEnd();
+    static bool room_master();
     static void event_req(const std::string& data);
     static bool join_queue(const char* request);
     static char* exit_queue();

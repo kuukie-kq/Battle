@@ -1,8 +1,10 @@
 #include <iostream>
+#include "util/server/UdpServer.h"
 #include "qts/DivUI.h"
 
 int main(int argc,char** argv) {
     std::cout << "Hello World" << std::endl;
+    UdpServer::server();
     DivUI::run(argc,argv);
     return 0;
 }

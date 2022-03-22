@@ -20,6 +20,7 @@ void Play::setShow(QWidget *widget) {
     mine->setParent(widget);
     hers->setParent(widget);
     exit->setParent(widget);
+    layoutWidget->setParent(widget);
 }
 
 void Play::setUI() {
@@ -29,9 +30,14 @@ void Play::setUI() {
     hers = new QLabel();
     hers->setText("敌方");
     hers->setGeometry(0,25,40,40);
+
+    layoutWidget = new QWidget();
+    layoutWidget->setGeometry(900,100,200,300);
+    gridLayout = new QGridLayout();
+
     exit = new QPushButton();
     exit->setGeometry(1080,700,100,80);
-    exit->setText("完成");
+    exit->setText("返回房间");
 }
 
 void Play::setQSS() {
@@ -43,10 +49,10 @@ void Play::setSignal() {
 
 }
 
-void Play::nextFrame(int x,int y) {
-    mine->setGeometry(x,y,40,40);
-    hers->setGeometry(x,y+240,40,40);
-    if(x >= 150 && x < 250) {
-        connect(exit,SIGNAL(clicked()),this,SIGNAL(playSuccess()));
+void Play::nextFrame(ng::GameFrame frame) {
+    mine->setGeometry(frame.mineX,frame.mineY,40,40);
+    hers->setGeometry(frame.herX,frame.herY,40,40);
+    if (frame.mineHP == 0 || frame.herHP == 0) {
+        connect(exit,SIGNAL(clicked()),this,SLOT(playSuccess()));
     }
 }

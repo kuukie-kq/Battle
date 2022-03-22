@@ -169,7 +169,7 @@ void Start::editSuccess(const QString& message) {
     UISET(playWidget,play,Play,"../qss/view/play.qss");
 
     connect(play,SIGNAL(playSuccess()),this,SLOT(playSuccess()));
-    connect(this,SIGNAL(nextTime(int,int)),play,SLOT(nextFrame(int,int)));
+    connect(this,SIGNAL(nextTime(ng::GameFrame)),play,SLOT(nextFrame(ng::GameFrame)));
     timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(timeoutRead()));
     timer->start(25);
@@ -218,7 +218,6 @@ void Start::loadingEvent() {
 }
 
 void Start::timeoutRead() {
-    Channel::exit_queue();
     // Game
-    nextTime((Random::randInt()%1250)+5,1);
+    nextTime(Game::game_json(Channel::exit_queue()));
 }

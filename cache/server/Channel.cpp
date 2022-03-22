@@ -46,6 +46,10 @@ bool Channel::loadingEnd() {
     return __sync_bool_compare_and_swap(&cac::flag,10,0);
 }
 
+bool Channel::room_master() {
+    return strcmp(cac::r.room_user_name,cac::u.user_name) == 0;
+}
+
 void Channel::event_req(const std::string& data) {
     bool success = join_queue(data.c_str());
     for (;!success;success = join_queue(data.c_str())) {
