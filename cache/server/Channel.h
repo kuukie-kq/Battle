@@ -116,6 +116,7 @@ public:
     static void event_ret(const std::string& data);
     static std::string get(void* view);
     static bool loadingEnd();
+    static void room_start_game(cac::rooms rooms);
     static bool room_master();
     static void event_req(const std::string& data);
     static bool join_queue(const char* request);

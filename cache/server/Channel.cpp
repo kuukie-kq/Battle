@@ -46,6 +46,14 @@ bool Channel::loadingEnd() {
     return __sync_bool_compare_and_swap(&cac::flag,10,0);
 }
 
+void Channel::room_start_game(cac::rooms rooms) {
+    cac::r.room_id = rooms.room_id;
+    strcpy(cac::r.room_name,rooms.room_name);
+    strcpy(cac::r.room_user_name,rooms.room_user_name);
+    cac::r.players = rooms.players;
+    strcpy(cac::r.room_visitor_name,rooms.room_visitor_name);
+}
+
 bool Channel::room_master() {
     return strcmp(cac::r.room_user_name,cac::u.user_name) == 0;
 }
