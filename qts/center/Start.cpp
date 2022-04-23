@@ -110,7 +110,7 @@ void Start::lobbyExit() {
 void Start::hallSuccess(const QString& message) {
     delete hall;
     delete hallWidget;
-    UISET(readyWidget,ready,Ready,"../qss/view/hall.qss");
+    UISET(readyWidget,ready,Ready,"../qss/view/ready.qss");
 
     connect(ready,SIGNAL(start(QString)),this,SLOT(readySuccess(QString)));
     connect(ready,SIGNAL(backExit()),this,SLOT(hallExit()));
@@ -140,7 +140,7 @@ void Start::hallExit() {
 void Start::readySuccess(const QString& message) {
     delete ready;
     delete readyWidget;
-    UISET(packageWidget,package,Package,"../qss/view/hall.qss");
+    UISET(packageWidget,package,Package,"../qss/view/package.qss");
 
     connect(package,SIGNAL(success(QString)),this,SLOT(packageSuccess(QString)));
     connect(package,SIGNAL(loading()),this,SLOT(loadingEvent()));
@@ -154,7 +154,7 @@ void Start::readySuccess(const QString& message) {
 void Start::packageSuccess(const QString& message) {
     delete package;
     delete packageWidget;
-    UISET(editWidget,edit,Edit,"../qss/view/hall.qss");
+    UISET(editWidget,edit,Edit,"../qss/view/edit.qss");
 
     connect(edit,SIGNAL(finish(QString)),this,SLOT(editSuccess(QString)));
 
@@ -183,7 +183,7 @@ void Start::playSuccess() {
     timer->stop();
     delete play;
     delete playWidget;
-    UISET(readyWidget,ready,Ready,"../qss/view/hall.qss");
+    UISET(readyWidget,ready,Ready,"../qss/view/ready.qss");
 
     connect(ready,SIGNAL(start(QString)),this,SLOT(readySuccess(QString)));
     connect(ready,SIGNAL(backExit()),this,SLOT(hallExit()));
