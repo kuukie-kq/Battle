@@ -33,5 +33,4 @@
     padding: 10px 0;
     background: #7FFF00;
     border-radius: 10%;
-    font-size: large;
 }
