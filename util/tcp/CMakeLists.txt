@@ -1,2 +1,2 @@
-aux_source_directory(. DIR_TCP_SOURCE)
-add_library(TCP ${DIR_TCP_SOURCE})
+aux_source_directory(. DIR_UTIL_TCP)
+add_library(UTIL_TCP ${DIR_UTIL_TCP})

@@ -50,14 +50,14 @@ int UserLogin::callBySocket(char*& request) {
         error = "接受数据响应";
         return 1;
     }
-    QString response = responseLine;
-    request = (char *)response.toStdString().c_str();
+    std::string response = responseLine;
+    request = (char *)response.c_str();
     request = responseLine;
     close(fdSocket);
     return 0;
 }
 
-int UserLogin::login(const QString& username, const QString& password) {
+int UserLogin::login(const std::string& username, const std::string& password) {
     char data[MAX];
 //    sprintf(data,"login<:>%s<->%s",username.toStdString().c_str(),password.toStdString().c_str());
 //    char* requestAndResponse = data;
@@ -75,8 +75,8 @@ int UserLogin::login(const QString& username, const QString& password) {
     jsonObject["argCls"].Add("java.lang.String");
     jsonObject["argCls"].Add("java.lang.String");
     jsonObject.AddEmptySubArray("args");
-    jsonObject["args"].Add(username.toStdString());
-    jsonObject["args"].Add(password.toStdString());
+    jsonObject["args"].Add(username);
+    jsonObject["args"].Add(password);
     std::cerr << jsonObject.ToString() << std::endl;
     sprintf(data,"%s",jsonObject.ToString().c_str());
     char* requestAndResponse = data;
@@ -143,7 +143,7 @@ int TestUserLogin::server() {
     return 0;
 }
 
-int TestUserLogin::login(const QString& username, const QString& password) {
+int TestUserLogin::login(const std::string& username, const std::string& password) {
     if(username == password) {
         return 1;
     } else {
@@ -151,7 +151,7 @@ int TestUserLogin::login(const QString& username, const QString& password) {
     }
 }
 
-int UserLogin::loginTest(const QString &username, const QString &password) {
+int UserLogin::loginTest(const std::string &username, const std::string &password) {
     char data[MAX];
     neb::CJsonObject jsonObject;
     jsonObject.Add("methodName","login");
@@ -160,8 +160,8 @@ int UserLogin::loginTest(const QString &username, const QString &password) {
     jsonObject["argCls"].Add("java.lang.String");
     jsonObject["argCls"].Add("java.lang.String");
     jsonObject.AddEmptySubArray("args");
-    jsonObject["args"].Add(username.toStdString());
-    jsonObject["args"].Add(password.toStdString());
+    jsonObject["args"].Add(username);
+    jsonObject["args"].Add(password);
     std::cerr << jsonObject.ToString() << std::endl;
     sprintf(data,"%s",jsonObject.ToString().c_str());
     char* requestAndResponse = data;

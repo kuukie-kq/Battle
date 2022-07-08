@@ -1,2 +1,2 @@
-aux_source_directory(. DIR_RAND_SOURCE)
-add_library(RAND ${DIR_RAND_SOURCE})
+aux_source_directory(. DIR_UTIL_RAND)
+add_library(UTIL_RAND ${DIR_UTIL_RAND})

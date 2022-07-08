@@ -11,7 +11,6 @@
 #include <netinet/in.h>
 #include <unistd.h>
 #include <strings.h>
-#include <QString>
 #include <cstring>
 #include <vector>
 #include <arpa/inet.h>
@@ -30,10 +29,10 @@ private:
     char responseLine[MAX];
     char requestLine[MAX];
     int callBySocket(char*& request);
-    QString error;
+    std::string error;
 public:
-    int login(const QString& username,const QString& password);
-    int loginTest(const QString& username,const QString& password);
+    int login(const std::string& username,const std::string& password);
+    int loginTest(const std::string& username,const std::string& password);
 };
 
 class TestUserLogin {
@@ -45,7 +44,7 @@ private:
     struct sockaddr_in clientaddr;
     char recvline[MAX];
     char sendline[MAX];
-    int login(const QString& username,const QString& password);
+    int login(const std::string& username,const std::string& password);
 public:
     int server();
 };

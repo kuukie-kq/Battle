@@ -1,2 +1,2 @@
-aux_source_directory(. DIR_SERVER_SOURCE)
-add_library(SERVER ${DIR_SERVER_SOURCE})
+aux_source_directory(. DIR_UTIL_SERVER)
+add_library(UTIL_SERVER ${DIR_UTIL_SERVER})

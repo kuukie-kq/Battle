@@ -1,2 +1,2 @@
-aux_source_directory(. DIR_UDP_SOURCE)
-add_library(UDP ${DIR_UDP_SOURCE})
+aux_source_directory(. DIR_UTIL_UDP)
+add_library(UTIL_UDP ${DIR_UTIL_UDP})

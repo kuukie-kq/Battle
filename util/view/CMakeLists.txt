@@ -1,2 +1,2 @@
-aux_source_directory(. DIR_VIEW_SOURCE)
-add_library(VIEW ${DIR_VIEW_SOURCE})
+aux_source_directory(. DIR_UTIL_VIEW)
+add_library(UTIL_VIEW ${DIR_UTIL_VIEW})
